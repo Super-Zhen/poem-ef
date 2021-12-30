@@ -1,0 +1,83 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"app-plus": {
+					"bounce": "none", //关闭窗口回弹效果
+					"titleNView": {
+						"buttons": [ //原生标题栏按钮配置,
+							{
+								"type":"menu",
+								"fontSize":"23px"
+							},{
+								 "type":"share",
+								 "fontSize":"23px"
+							},{
+								"type": "favorite",
+								"fontSize":"24px"
+							},
+							{
+								"text": "全部" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"fontSize":"14px",
+								"float":"left"
+							}
+						],
+						"backButton": { //自定义 backButton
+							"background": "#00FF00"
+						}
+					}
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/dic/dic",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/me/me",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"tabBar": {
+	    "color": "#8a8a8a",
+	    "selectedColor": "#007fff",
+	    "borderStyle": "black",
+		"iconWidth":"24px",
+		"height":"50px",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/index/index",
+	        "iconPath": "static/img/pen.png",
+	        "selectedIconPath": "static/img/penactive.png",
+	        "text": "摘录"
+	    },{
+	        "pagePath": "pages/dic/dic",
+	        "iconPath": "static/img/dic.png",
+	        "selectedIconPath": "static/img/dicactive.png",
+	        "text": "文库"
+	    },{
+	        "pagePath": "pages/me/me",
+	        "iconPath": "static/img/person.png",
+	        "selectedIconPath": "static/img/personactive.png",
+	        "text": "我的"
+	    }]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
