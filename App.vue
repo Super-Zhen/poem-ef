@@ -19,6 +19,10 @@
 	page{
 		background-color: #eceef3;
 	}
+	*{
+		margin: 0;
+		padding: 0;
+	}
 	.uni-page-head-btn{
 		margin:0 16px;
 	}

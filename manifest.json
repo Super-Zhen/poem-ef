@@ -17,7 +17,9 @@
             "delay" : 0
         },
         /* 模块配置 */
-        "modules" : {},
+        "modules" : {
+            "OAuth" : {}
+        },
         /* 应用发布信息 */
         "distribute" : {
             /* android打包配置 */
@@ -44,7 +46,9 @@
             "ios" : {},
             /* SDK配置 */
             "sdkConfigs" : {
-                "ad" : {}
+                "oauth" : {
+                    "univerify" : {}
+                }
             }
         }
     },
@@ -67,6 +71,22 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
+	"h5" : {
+		"devServer": {
+			"https" : false,
+			"port": 8080,
+			"disableHostCheck": true,
+			"proxy": {
+				 //这里的/api标记了以/api开头的接口需要使用此代理，会将下方的target拼接到接口的最前面
+				"^/": {
+					"target": "http://150.158.34.153" //需要代理到的指定服务器
+					// "pathRewrite": {//路径重写，将接口路径中以/api开头的部分替换掉
+					// 	// "^/": ""
+					// }
+				}
+			}
+		}
+	},
     "uniStatistics" : {
         "enable" : false
     },

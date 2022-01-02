@@ -8,7 +8,8 @@
 			
 		</view>
 		<view>
-			<button type="primary" size="default" @click="login">登录</button>
+			<!-- <button type="primary" size="default" @click="submitLogin">登录</button> -->
+			<!-- <button type="primary" size="default" @click="submitLogin">登录</button> -->
 		</view>
 	</view>
 </template>
@@ -21,7 +22,15 @@
 			}
 		},
 		onLoad() {
-
+			console.log('onLoad')
+			// let param = {
+			// 	collectionId:"5c1a1bd667f35600660b26ab",
+			// 	page:1,
+			// 	perPage:50
+			// }
+			// this.$api.works.getWorksByCollection(param).then((res)=>{
+			// 	console.log(res)
+			// })
 		},
 		onNavigationBarButtonTap(e) {
 			switch (e.index){
@@ -43,76 +52,50 @@
 			}
 		},
 		methods: {
-			login(){
-				uni.login({
-				    provider: 'univerify',
-				    univerifyStyle:  { 
-						"fullScreen": false, // 是否全屏显示，默认值： false
-						"backgroundColor": "#ffffff",  // 授权页面背景颜色，默认值：#ffffff
-						"backgroundImage": "", // 全屏显示的背景图片，默认值："" （仅支持本地图片，只有全屏显示时支持）  
-						"icon": {  
-							"path": "static/xxx.png" // 自定义显示在授权框中的logo，仅支持本地图片 默认显示App logo   
-						},  
-						"phoneNum": {  
-							"color": "#202020"  // 手机号文字颜色 默认值：#202020  
-						},  
-						"slogan": {  
-							"color": "#BBBBBB"  //  slogan 字体颜色 默认值：#BBBBBB  
-						},  
-						"authButton": {  
-							"normalColor": "#3479f5", // 授权按钮正常状态背景颜色 默认值：#3479f5  
-							"highlightColor": "#2861c5",  // 授权按钮按下状态背景颜色 默认值：#2861c5（仅ios支持）  
-							"disabledColor": "#73aaf5",  // 授权按钮不可点击时背景颜色 默认值：#73aaf5（仅ios支持）  
-							"textColor": "#ffffff",  // 授权按钮文字颜色 默认值：#ffffff  
-							"title": "本机号码一键登录", // 授权按钮文案 默认值：“本机号码一键登录”  
-							"borderRadius": "24px"    // 授权按钮圆角 默认值："24px" （按钮高度的一半）
-						},  
-						"otherLoginButton": {  
-							"visible": true, // 是否显示其他登录按钮，默认值：true  
-							"normalColor": "", // 其他登录按钮正常状态背景颜色 默认值：透明 
-							"highlightColor": "", // 其他登录按钮按下状态背景颜色 默认值：透明 
-							"textColor": "#656565", // 其他登录按钮文字颜色 默认值：#656565  
-							"title": "其他登录方式", // 其他登录方式按钮文字 默认值：“其他登录方式”  
-							"borderColor": "",  //边框颜色 默认值：透明（仅iOS支持）  
-							"borderRadius": "0px" // 其他登录按钮圆角 默认值："24px" （按钮高度的一半）
-						},  
-						"privacyTerms": {  
-							"defaultCheckBoxState":true, // 条款勾选框初始状态 默认值： true
-							"uncheckedImage":"", // 可选 条款勾选框未选中状态图片（仅支持本地图片 建议尺寸 24x24px）(3.2.0+ 版本支持)   
-							"checkedImage":"", // 可选 条款勾选框选中状态图片（仅支持本地图片 建议尺寸24x24px）(3.2.0+ 版本支持)   
-							"checkBoxSize":12, // 可选 条款勾选框大小，仅android支持
-							"textColor": "#BBBBBB", // 文字颜色 默认值：#BBBBBB  
-							"termsColor": "#5496E3", //  协议文字颜色 默认值： #5496E3  
-							"prefix": "我已阅读并同意", // 条款前的文案 默认值：“我已阅读并同意”  
-							"suffix": "并使用本机号码登录", // 条款后的文案 默认值：“并使用本机号码登录”  
-							"privacyItems": [  // 自定义协议条款，最大支持2个，需要同时设置url和title. 否则不生效  
-								{  
-									"url": "https://", // 点击跳转的协议详情页面  
-									"title": "用户服务协议" // 协议名称  
-								}  
-							]  
+			submitLogin(){
+				console.log(1111)
+				uni.login({ //正式登录，弹出授权窗
+					provider: 'univerify',
+					univerifyStyle: { // 自定义登录框样式
+						"fullScreen": false, // 是否全屏显示，true表示全屏模式，false表示非全屏模式，默认值为false。
+						"backgroundColor": "#ffffff", // 授权页面背景颜色，默认值：#ffffff 
+						"phoneNum": {
+							"color": "#2281F5", // 手机号文字颜色 默认值：#000000   
 						},
-						"buttons": {  // 自定义页面下方按钮仅全屏模式生效（3.1.14+ 版本支持）
-							"iconWidth": "45px", // 图标宽度（高度等比例缩放） 默认值：45px
-							"list": [
-								{
-									"provider": "apple",
-									"iconPath": "/static/img/dic.png" // 图标路径仅支持本地图片
-								}, 
-								{
-									"provider": "weixin",
-									"iconPath": "/static/img/dic.png" // 图标路径仅支持本地图片
-								}
-							]
+						"authButton": {
+							"normalColor": "#3479f5", // 授权按钮正常状态背景颜色 默认值：#3479f5  
+							"highlightColor": "#2861c5", // 授权按钮按下状态背景颜色 默认值：#2861c5（仅ios支持）  
+							"disabledColor": "#73aaf5", // 授权按钮不可点击时背景颜色 默认值：#73aaf5（仅ios支持）  
+							"textColor": "#ffffff", // 授权按钮文字颜色 默认值：#ffffff  
+							"title": "本机号码一键登录" // 授权按钮文案 默认值：“本机号码一键登录”  
 						}
 					},
-				    success(res){ // 登录成功
-				        console.log(res.authResult);  // {openid:'登录授权唯一标识',access_token:'接口返回的 token'}
-				    },
-				    fail(res){  // 登录失败
-				        console.log(res.errCode)
-				        console.log(res.errMsg)
-				    }
+					success(res) { // 正式登录成功
+						console.log("res.authResult",res.authResult); // {openid:'登录授权唯一标识',access_token:'接口返回的 token'}
+
+						// 在得到access_token后，通过callfunction调用云函数
+						uniCloud.callFunction({
+							name: 'loginByUniverify', // 云函数名称
+							data: { //传给云函数的参数
+								'access_token': res.authResult.access_token, // 客户端一键登录接口返回的access_token
+								'openid': res.authResult.openid // 客户端一键登录接口返回的openid
+							},
+							success(callRes) {
+								console.log('调用云函数成功' + callRes)
+							},
+							fail(callErr) {
+								console.log('调用云函数出错' + callErr)
+							},
+							complete() {
+								uni.closeAuthView() //关闭授权登录界面
+							}
+						})
+					},
+					fail(err) { // 正式登录失败
+						console.log(err.errCode)
+						console.log(err.errMsg)
+						uni.closeAuthView() //关闭授权登录界面
+					}
 				})
 			}
 		}

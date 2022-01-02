@@ -18,11 +18,14 @@ export class Http {
 	request({
 		url,
 		data = {},
-		method,
+		method = 'post',
 		header,
 		callback = ''
 	} = {}) {
-		let baseUrl = "xxxxx" //后台请求接口的公共部分
+		let baseUrl = ''
+	//#ifdef APP-PLUS
+		baseUrl = "http://150.158.34.153" //后台请求接口的公共部分
+	//#endif
 		let _this = this;
 		return new Promise((resolve, reject) => {
 			uni.request({
@@ -41,8 +44,7 @@ export class Http {
 				complete: res => {
 					// callback token过期后重新请求接口，接口返回的数据
 					if (callback) return callback(res.data);
-					let statusCode = res.data.code;
-					let errText = res.data.msg;
+					let {statusCode,errMsg} = res;
 					// console.log(statusCode, 'statusCode')
 					if (statusCode == 404) {
 						console.log('接口不存在')
