@@ -49,11 +49,35 @@ function getAuthorById2 (data){
 	})
 }
 
+/**
+ * 获取作者作品列表
+ * @param {Object} data
+ */
+function getWorksByAuthor(data){
+	return http.request({
+		url:'call/getWorksByAuthor',
+		data
+	})
+}
+
+/**
+ * 获取作品详情
+ * @param {Object} data
+ */
+function getWorkById(data){
+	return http.request({
+		url:'/call/getWorkById',
+		data
+	})
+}
+
 const works = {
 	getWorksByCollection,
 	getCollectionKinds,
 	getAllCollections,
 	getHotAuthorsIncludeCountByLikers,
-	getAuthorById2
+	getAuthorById2,
+	getWorksByAuthor,
+	getWorkById
 }
 export default works

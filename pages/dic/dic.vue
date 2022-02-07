@@ -68,7 +68,7 @@
             },
             data() {
                 return {
-					currentIndex:'1',
+					currentIndex:'2',
 					type:"1",
                     categoryList:[],
                     subCategoryList:[],
@@ -152,11 +152,14 @@
 				
 				// 获取作者详情
 				toAuthorDetail(id){
-					// this.$router.push()
+					this.$router.push({
+						path:`/pages/dic/authordetail?id=${id}`
+					})
 				}
             },
             mounted() {
-				this.init()
+				this.getHotAuthorsIncludeCountByLikers(this.pageParam)
+				// this.init()
             }
         }
     </script>
