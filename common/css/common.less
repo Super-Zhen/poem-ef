@@ -1,0 +1,173 @@
+/* *{
+	margin: 0;
+	padding: 0;
+} */
+
+
+[v-cloak] {
+  display: none;
+}
+
+.border{ border:1rpx solid #cccccc;}
+.borderT{ border-top: 1rpx solid #edf0fb;}	
+.borderB{ border-bottom: 1rpx solid #edf0fb;}	
+
+
+.fontS12{ font-size: 2 * 12rpx; }
+.fontS13{ font-size: 2 * 13rpx; }
+.fontS14{ font-size: 2 * 14rpx; }
+.fontS15{ font-size: 2 * 15rpx; }
+.fontS16{ font-size: 2 * 16rpx; }
+
+.textJustify{text-align: justify;}
+.textCenter{ text-align: center;}
+.textRight{ text-align: right;}
+.floatR{ float: right;}
+.colorfff{ color: #FFFFFF !important; }
+.color999{ color: #999999; }
+.coloreee{ color: #eeeeee; }
+.colorfd5c5a{ color: #fd5c5a;}
+.colorf6495ed{ color: #6495ed;}
+
+.bgC6cc051{ background-color: #6cc051;}
+.bgCfff{ background-color: #FFFFFF;}
+
+.width10{ width: 2 * 10rpx;}
+.width15{ width: 2 * 15rpx;}
+.width20{ width: 2 * 20rpx;}
+.width25{ width: 2 * 25rpx;}
+.width28{ width: 2 * 28rpx;}
+.width30{ width: 2 * 30rpx;}
+.width70{ width: 2 * 70rpx;}
+.minwidth70{ min-width: 2 * 70rpx;}
+
+.height100 { height: 2*100rpx;}
+
+.wid70{ width: 70%; }
+.wid30{ width: 30%; }
+.wid33{ width: 33%; }
+.wid90{ width: 90%; }
+
+.pd5 { padding: 2 * 5rpx;}
+.pd10 { padding: 2 * 10rpx;}
+.pd20 { padding: 2 * 20rpx;}
+.pdb75{ padding-bottom: 2* 75rpx;}
+.pdb80{ padding-bottom: 2* 80rpx;}
+.pdr10{padding-right: 2* 10rpx; }
+.pdr20{padding-right: 2* 20rpx; }
+
+.pdl10{ padding-left:  2* 10rpx;}
+
+.mgauto{ margin: 0 auto;}
+
+.mg15{ margin: 2*15rpx;}
+
+.mgt5{ margin-top: 2*5rpx;}
+.mgt10{ margin-top: 2*10rpx;}
+.mgt15{ margin-top: 2*15rpx;}
+.mgt20{ margin-top: 2*20rpx;}
+.mgt30{ margin-top: 2*30rpx;}
+.mgt40{ margin-top: 2*40rpx;}
+.mgt50{ margin-top: 2*50rpx;}
+.mgt60{ margin-top: 2*60rpx;}
+
+.mgr10{ margin-right: 2*10rpx;}
+.mgr15{ margin-right: 2*15rpx;}
+.mgr20{ margin-right: 2*20rpx;}
+.mgr30{ margin-right: 2*30rpx;}
+.mgr40{ margin-right: 2*40rpx;}
+.mgr50{ margin-right: 2*50rpx;}
+.mgr60{ margin-right: 2*60rpx;}
+
+.mgl5{ margin-left: 2 * 5rpx;}
+.mgl10{ margin-left: 2 * 10rpx;}
+.mgl15{ margin-left: 2 * 15rpx;}
+.mgl20{ margin-left: 2 * 20rpx;}
+.mgl30{ margin-left: 2 * 30rpx;}
+.mgl40{ margin-left: 2 * 40rpx;}
+.mgl50{ margin-left: 2 * 50rpx;}
+.mgl60{ margin-left: 2 * 60rpx;}
+
+.mgb5{ margin-bottom: 2 * 5rpx;}
+.mgb10{ margin-bottom: 2 * 10rpx;}
+.mgb15{ margin-bottom: 2 * 15rpx;}
+.mgb20{ margin-bottom: 2 * 20rpx;}
+.mgb30{ margin-bottom: 2 * 30rpx;}
+.mgb40{ margin-bottom: 2 * 40rpx;}
+.mgb60{ margin-bottom: 2 * 60rpx;}
+.mgb75{ margin-bottom: 2 * 75rpx;}
+
+.df{display: flex;display: -webkit-flex; /* Safari */}
+/* 
+nowrap（默认）：不换行 
+wrap：换行在第一行的上方
+wrap-reverse：换行，第一行在下方
+*/
+.ffrn{flex-flow:row nowrap;}
+.ffrw{flex-flow:row wrap;}
+.ffrwr{flex-flow:row wrap-reverse;}
+.ffrrn{flex-flow:row-reverse nowrap;}
+.ffrrw{flex-flow:row-reverse wrap;}
+.ffrrwr{flex-flow:row-reverse wrap-reverse;}
+.ffcn{flex-flow:column nowrap;}
+.ffcw{flex-flow:column wrap;}
+.ffcwr{flex-flow:column wrap-reverse;}
+.ffcrn{flex-flow:column-reverse nowrap;}
+.ffcrw{flex-flow:column-reverse wrap;}
+.ffcrwr{flex-flow:column-reverse wrap-reverse;}
+
+
+
+/* 
+flex-start（默认值）：左对齐 
+flex-end：右对齐
+center： 居中
+space-between：两端对齐，项目之间的间隔都相等。
+space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+*/
+.jcfs{justify-content:flex-start;}
+.jcfe{justify-content:flex-end;}
+.jcc{justify-content:center;}
+.jcsb{justify-content:space-between;}
+.jcsa{justify-content:space-around;}
+
+
+
+/* 
+flex-start：交叉轴的起点对齐。 
+flex-end：交叉轴的终点对齐。
+center：交叉轴的中点对齐。
+baseline: 项目的第一行文字的基线对齐。
+stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+*/
+.aifs{align-items:flex-start;}
+.aife{align-items:flex-end;}
+.aic{align-items:center;}
+.aib{align-items:baseline;}
+.ais{align-items:stretch;}
+
+/* 
+align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+flex-start：与交叉轴的起点对齐。 
+flex-end：与交叉轴的终点对齐。
+center：与交叉轴的中点对齐。
+space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+stretch（默认值）：轴线占满整个交叉轴。
+*/
+.acfs{align-content:flex-start;}
+.acfe{align-content:flex-end;}
+.acc{align-content:center;}
+.acsb{align-content:space-between;}
+.acsa{align-content:space-around;}
+.acs{align-content:stretch;}
+
+.fixedB{
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.arrow{
+	transform:rotate(90deg)
+}

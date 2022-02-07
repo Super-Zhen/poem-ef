@@ -12,18 +12,16 @@
 	}
 </script>
 
-<style>
+<style lang="less">
 	/*每个页面公共css */
 	/* @import "//at.alicdn.com/t/font_3096915_gjpgqyyk7x.css"; */
 	@import "./static/font/iconfont.css";
+	@import "./common/css/common.less";
 	page{
 		background-color: #eceef3;
 	}
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.uni-page-head-btn{
+	
+	/* .uni-page-head-btn{
 		margin:0 16px;
-	}
+	} */
 </style>

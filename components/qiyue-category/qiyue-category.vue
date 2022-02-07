@@ -2,7 +2,7 @@
 	<view>
 		<view class="nav">
 			<view class="nav-left">
-				<scroll-view scroll-y :style="'height:'+height+'px'" scroll-with-animation>
+				<scroll-view scroll-y :style="'height:'+height+'px'"  scroll-with-animation>
 					<view class="nav-left-item" v-for="(item,index) in categoryList" @click="categoryClickMain(item,index)" :key="index"
 					 :style="index==categoryActive?'color:'+activeTextColor+';background-color:'+activeBackgroundColor:''">
 						{{item[label]}}
@@ -12,8 +12,8 @@
 			<view class="nav-right">
 				<scroll-view scroll-y :scroll-top="scrollTop" @scroll="scroll" :style="'height:'+height+'px'" scroll-with-animation>
 					<view class="nav-right-item" v-for="(item,index2) in subCategoryList" :key="index2" @click="categoryClickSub(item)">
-						<image :src="item[imgSrc]" />
-						<view>{{item[label]}}</view>
+						<image :src="item['cover']" />
+						<view>{{item['name']}}</view>
 					</view>
 				</scroll-view>
 			</view>
@@ -58,11 +58,11 @@
 			},
 			activeTextColor: {
 				type: String,
-				default: '#F24544'
+				default: '#ae3337'
 			},
 			activeBackgroundColor: {
 				type: String,
-				default: '#e5e5e5'
+				default: ''
 			},
 			label: {
 				type: String,
@@ -96,10 +96,12 @@
 				success: res => {
 					console.log(res)
 					// #ifdef APP-PLUS
-					this.height = res.windowHeight; // 获取的高度为屏幕的高度减去状态栏的高度 减去底部导航的高度 以及顶部的高度
+					console.log(res.windowHeight)
+					this.height = res.windowHeight-50-75; // 获取的高度为屏幕的高度减去状态栏的高度 减去底部导航的高度 以及顶部的高度
 					// #endif
 					// #ifdef H5
-					this.height = res.windowHeight; 
+					console.log(res.windowHeight)
+					this.height = res.windowHeight-50; 
 					// #endif
 					
 				}
@@ -120,13 +122,14 @@
 	}
 
 	.nav-left {
-		width: 30%;
+		width: 26%;
+		border-right: 1rpx solid #E0E0E0;
 	}
 
 	.nav-left-item {
 		height: 60px;
-		border-right: solid 1px #E0E0E0;
-		border-bottom: solid 1px #E0E0E0;
+		/* border-right: solid 1px #E0E0E0;
+		border-bottom: solid 1px #E0E0E0; */
 		font-size: 14px;
 		display: flex;
 		align-items: center;
@@ -134,26 +137,37 @@
 	}
 
 	.nav-right {
-		width: 70%;
+		width: 74%;
 		/* padding-top: 11px; */
 	}
 
 	.nav-right-item {
-		width: 28%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		width: 33%;
 		height: 100px;
 		float: left;
 		text-align: center;
-		padding: 5px;
+		/* padding: 5px; */
 		font-size: 13px;
 	}
 
 	.nav-right-item image {
 		width: 50px;
 		height: 50px;
+		border-radius: 50%;
+	}
+	
+	.nav-right-item text {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
 	}
 
 	.active {
-		color: #F24544;
+		color: rgb(143 42 42);
 	}
 
 	.padding {
