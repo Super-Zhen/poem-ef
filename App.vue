@@ -17,9 +17,9 @@
 	/* @import "//at.alicdn.com/t/font_3096915_gjpgqyyk7x.css"; */
 	@import "./static/font/iconfont.css";
 	@import "./common/css/common.less";
-	page{
-		background-color: #eceef3;
-	}
+	// page{
+	// 	background-color: #eceef3;
+	// }
 	
 	/* .uni-page-head-btn{
 		margin:0 16px;

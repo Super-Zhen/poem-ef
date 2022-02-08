@@ -40,7 +40,7 @@
 		<view v-show="currentIndex === '2' && authorsList.length">
 			<view class="border fontS14 mg15 pd20 borderR10" v-for="(item, index) in authorsList" :key="item.objectId">
 				<view class="fontS16 mgb15" >
-					<text @tap='toAuthorDetail(item.objectId)'>
+					<text @tap='toAuthorDetail(item.objectId,item.name)'>
 						{{item.name}}
 					</text>
 				</view>
@@ -151,9 +151,10 @@
 				},
 				
 				// 获取作者详情
-				toAuthorDetail(id){
+				toAuthorDetail(id,name){
+					debugger
 					this.$router.push({
-						path:`/pages/dic/authordetail?id=${id}`
+						path:`/pages/dic/authordetail?id=${id}&name=${name}`
 					})
 				}
             },

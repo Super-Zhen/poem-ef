@@ -51,24 +51,24 @@
             }
             
         }
-        // ,{
-        //     "path" : "pages/dic/authordetail",
-        //     "style" :                                                                                    
-        //     {
-        //         "navigationBarTitleText": "",
-        //         "enablePullDownRefresh": false
-        //     }
+        ,{
+            "path" : "pages/dic/authordetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
             
-        // }
-        // ,{
-        //     "path" : "pages/dic/workdetail",
-        //     "style" :                                                                                    
-        //     {
-        //         "navigationBarTitleText": "",
-        //         "enablePullDownRefresh": false
-        //     }
+        }
+        ,{
+            "path" : "pages/dic/workdetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
             
-        // }
+        }
     ],
 	"tabBar": {
 	    "color": "#8a8a8a",
