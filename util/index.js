@@ -2,6 +2,11 @@ import stringify from "@/util/querystring";
 import cookie from '@/util/cookie'
 import {switchTab, push, replace, go, back, reLaunch} from './router.js'
 
+export function setTitle(title){
+	uni.setNavigationBarTitle({
+		title
+	})
+}
 /**
  * 判断是否是微信
  */

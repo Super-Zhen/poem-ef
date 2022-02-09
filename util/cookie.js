@@ -1,4 +1,4 @@
-import { trim, isType } from "@/utils";
+import { trim, isType } from "@/util/";
 
 const doc = null;
 // const doc = window.document;
