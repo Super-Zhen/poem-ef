@@ -3,13 +3,18 @@
 		<header-bar  titleTintColor="#000"  :bgColor="{'background': '#fff'}" fixed >
 		    <view slot="headerL" style="width:100%;">
 				<view class="navbox">
-					<view class="icon iconfont icon-tengxunweibo1" style="font-size: 30px;" @tap="changetype"></view>
+					<view class="width30">
+						<view class="icon iconfont icon-tengxunweibo1" style="font-size: 30px;" @tap="changetype" v-show="currentIndex==='1'"></view>
+					</view>
 					<view class="navborder" >
 						<view id='1' :class="currentIndex=='1'?'active':''" @tap="handerNavClick('1')">分类</view>
 						<view id='2' :class="currentIndex=='2'?'active':''" @tap="handerNavClick('2')">作者</view>
 						<view id='3' :class="currentIndex=='3'?'active':''" @tap="handerNavClick('3')">作品</view>
 					</view>
-					<view class="icon iconfont icon-tengxunweibo1" style="font-size: 30px;"></view>
+					<view class="width30">
+						<view class="icon iconfont icon-tengxunweibo1" style="font-size: 30px;" v-show="currentIndex==='1'"></view>
+					</view>
+					
 				</view>
 			</view>
 			<!-- <text slot="back" class="icon iconfont icon-icon-class-c"></text>
@@ -56,6 +61,23 @@
 				</view>
 			</view>
 		</view>
+		<view v-show="currentIndex=='3'">
+			<view v-for="item in allworks" :key="item.objectId" >
+				<view class="mg15 border borderR10 pd10">
+					<view class="fontS18 colorf6495ed fontW pdl10" >
+						<text @tap="toWorkDetail(item.objectId)">{{item.title}}</text>
+					</view>
+					<view class="mg15 fontS14 color999">
+						{{item.dynasty}}.{{item.authorName}}
+					</view>
+					<view>
+						<view v-for="items in item.content" class="fontS15 textIndent2 textJustify mgb5 lineH28">
+							{{items}}
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
     <script>
@@ -73,6 +95,7 @@
                     categoryList:[],
                     subCategoryList:[],
 					authorsList:[],
+					allworks:[],
 					pageParam:{
 						page: 1,
 						perPage: 5
@@ -80,6 +103,9 @@
                 }
             },
             methods: {
+				textSplit(text){
+					return text.split('\r\n')
+				},
 				changetype(){
 					switch (this.type){
 						case "1":
@@ -105,8 +131,12 @@
 							}
 							break;
 						case '2':
+							this.pageParam = { page:1,perPage:5}
 							this.getHotAuthorsIncludeCountByLikers(this.pageParam)
 							break;
+						case '3':
+							this.pageParam = { page:1, perPage:20}
+							this.getAllWorksForH5(this.pageParam)
 					}
 					
 				},
@@ -156,8 +186,31 @@
 					this.$router.push({
 						path:`/pages/dic/authordetail?id=${id}&name=${name}`
 					})
-				}
+				},
+				// 获取作品列表
+				async getAllWorksForH5(data){
+					let { result } = await this.$api.works.getAllWorksForH5(data)
+					result = result.map(item=>{
+						item.content= this.textSplit(item.content)
+						return item
+					})
+					// this.allworks = result
+					this.allworks&& this.allworks.splice(this.allworks.length,0,...result)
+					// this.allworks.push()
+				},
+				toWorkDetail(id){
+					uni.navigateTo({
+						url:`/pages/dic/workdetail?id=${id}`
+					})
+				},
+				
             },
+			onReachBottom(){
+				if(this.currentIndex!=='3') return
+				console.log('加载更多')
+				this.pageParam.page++
+				this.getAllWorksForH5(this.pageParam)
+			},
             mounted() {
 				this.getHotAuthorsIncludeCountByLikers(this.pageParam)
 				// this.init()

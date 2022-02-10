@@ -6,7 +6,7 @@
 					{{workDetail.title}}
 				</view>
 				<view class="textCenter mgt15 mgb10">[{{workDetail.dynasty}}]{{workDetail.authorName}}</view>
-				<view v-for="(item,index) in workContent" class="fontS16 textJustify mgb5 textIndent2 lineH28" style="white-space:pre-wrap">
+				<view v-for="(item,index) in workContent" :key="index" class="fontS16 textJustify mgb5 textIndent2 lineH28" style="white-space:pre-wrap">
 					{{item}}
 				</view>
 			</view>
@@ -21,7 +21,7 @@
 						{{workDetail.intro}}
 					</view>
 					<view v-show="active===1">
-						<view v-for="(item,index) in annotation">
+						<view v-for="(item,index) in annotation" :key="index">
 							<text class="fontW">{{item.split("：")[0]}}:</text>
 							<text>{{item.split("：")[1]}}</text>
 						</view>
@@ -59,7 +59,7 @@
 				let {result} = await this.$api.works.getWorkById(data)
 				console.log(result)
 				debugger
-				setTitle(result)
+				// setTitle(result.title)
 				this.workDetail = result
 				this.workContent = this.textSplit(result.content)
 				this.annotation = this.textSplit(result.annotation)

@@ -71,6 +71,16 @@ function getWorkById(data){
 	})
 }
 
+/**
+ * 获取作品页列表 不是单一作者
+ */
+function getAllWorksForH5(data){
+	return http.request({
+		url:'/call/getAllWorksForH5',
+		data
+	})
+}
+
 const works = {
 	getWorksByCollection,
 	getCollectionKinds,
@@ -78,6 +88,7 @@ const works = {
 	getHotAuthorsIncludeCountByLikers,
 	getAuthorById2,
 	getWorksByAuthor,
-	getWorkById
+	getWorkById,
+	getAllWorksForH5
 }
 export default works
