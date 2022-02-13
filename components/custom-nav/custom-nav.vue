@@ -84,9 +84,10 @@
     }
 </script>
 <style scoped>
-	.uni_topbar{
+	.uni_topbar,.inner{
 		z-index: 999;
 	}
+	
 	.fixed{
 		position: fixed;
 		left: 0;

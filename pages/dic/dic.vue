@@ -28,19 +28,44 @@
 	    		<view v-for="(items,indexs) in categoryList" :key="indexs">
 	    			<view class="title">
 	    				<text>{{items.name}}</text>
-	    				<view class="titleMore">
+	    				<view class="titleMore" v-show="items.subCategoryList.length>11">
 	    					<text>更多</text>
 	    					<image src="~/static/img/more.png" mode="widthFix" style="width: 26rpx;"></image>
 	    				</view>
 	    			</view>
-	    			<view v-for="(item,index) in items.subCategoryList" :key="index" >
-	    				<view class="namedesc">
-	    					{{item.name}}
-	    					{{item.shortDesc}}
+	    			<view class="df ffrw">
+	    				<view v-for="(item,index) in items.subCategoryList" v-if="index<12" :key="index" class="wid25 df jcc" >
+	    					<view class="namedesc">
+	    						<text class="fontS14 color999">{{item.shortDesc}}</text>
+	    						<text class="fontS18 ">{{item.name}}</text>
+	    						
+	    					</view>
 	    				</view>
 	    			</view>
 	    		</view>
 	    	</view>
+			<view class="11" v-else-if="type==='3'">
+				<view v-for="(items,indexs) in categoryList" :key="indexs">
+					<view class="title">
+						<text>{{items.name}}</text>
+						<view class="titleMore" v-show="items.subCategoryList.length>11">
+							<text>更多</text>
+							<image src="~/static/img/more.png" mode="widthFix" style="width: 26rpx;"></image>
+						</view>
+					</view>
+					<view class="df ffrw">
+						<view v-for="(item,index) in items.subCategoryList" v-if="index<12" :key="index" class="wid25 df jcc" >
+							<view class="namedesc3">
+								<view>
+									<image :src="item.cover" mode="aspectFill"></image>
+								</view>
+								<text class="fontS14 ">{{item.name}}</text>
+								
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
 	    </view>
 		<view v-show="currentIndex === '2' && authorsList.length">
 			<view class="border fontS14 mg15 pd20 borderR10" v-for="(item, index) in authorsList" :key="item.objectId">
@@ -90,7 +115,7 @@
             },
             data() {
                 return {
-					currentIndex:'2',
+					currentIndex:'1',
 					type:"1",
                     categoryList:[],
                     subCategoryList:[],
@@ -111,8 +136,16 @@
 						case "1":
 							return this.type = "2";
 						case "2":
+							uni.pageScrollTo({
+								scrollTop: 0,
+								duration: 1,
+							});
 							return this.type = "3";
 						case "3":
+							uni.pageScrollTo({
+								scrollTop: 0,
+								duration: 1,
+							});
 							return this.type = "1";
 					}
 				},
@@ -152,6 +185,7 @@
 						}
 						// this.categoryList = res.result
 						this.categoryList = res.result.filter(item=>item.subCategoryList)
+						
 						this.subCategoryList = this.categoryList[0].subCategoryList
 					}catch(e){
 						//TODO handle the exception
@@ -212,8 +246,8 @@
 				this.getAllWorksForH5(this.pageParam)
 			},
             mounted() {
-				this.getHotAuthorsIncludeCountByLikers(this.pageParam)
-				// this.init()
+				// this.getHotAuthorsIncludeCountByLikers(this.pageParam)
+				this.init()
             }
         }
     </script>
@@ -253,7 +287,36 @@
 			align-items: center;
 		}
 		.namedesc{
+			border-top: 1px solid #999;
+			padding-top: 50rpx;
 			display: flex;
+			flex-direction: column;
+			height: 300rpx;
+			line-height: 40rpx;
+			letter-spacing: 10rpx;
+			writing-mode:vertical-rl;
+		}
+		.namedesc3{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 50rpx;
+			>view{
+				border: 1rpx solid #C0C0C0;
+				width: 108rpx;
+				height: 108rpx;
+				padding: 4rpx;
+				overflow: hidden;
+				border-radius: 50%;
+				image{
+					
+					border-radius: 50%;
+					width: 108rpx;
+					height: 108rpx;
+					
+				}
+			}
+			
 		}
 		.authorbox{
 			margin: 30rpx;
