@@ -7,6 +7,14 @@ export function setTitle(title){
 		title
 	})
 }
+
+// 返回顶部
+export function toTop(interval) {
+	uni.pageScrollTo({
+		scrollTop: 0,
+		duration: Number(interval),
+	});
+}
 /**
  * 判断是否是微信
  */

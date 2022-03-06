@@ -10,6 +10,7 @@
 		<view>
 			<!-- <button type="primary" size="default" @click="submitLogin">登录</button> -->
 			<!-- <button type="primary" size="default" @click="submitLogin">登录</button> -->
+			<button type="default" @tap="chooseImg">dddd</button>
 		</view>
 	</view>
 </template>
@@ -52,6 +53,40 @@
 			}
 		},
 		methods: {
+			chooseImg(){
+				let that = this
+				uni.chooseImage({
+				    count: 1, //上传图片的数量，默认是9
+				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+				    sourceType: ['album'], //从相册选择
+				    success: function (res) {
+				        const tempFilePaths = res.tempFilePaths[0];    //拿到选择的图片，是一个数组
+						// console.log(tempFilePaths)
+						// // that.ImgFlag = true
+						// that.baseFormData.image = tempFilePaths
+						// console.log(Apimodule.public.uploadImg())
+						// uni.getImageInfo({
+						// 	src: res.tempFilePaths[0],
+						// 	success: function(image) {
+								
+						// 	}
+						// })
+						uni.uploadFile({ // todo
+							// url: Apimodule.public.uploadImg(), //上传地址
+							url: 'http://192.168.10.153:8010/merchant/api/upload', //上传地址
+							fileType: "image",
+							name: '图片', //文件名称
+							// header: {
+							// 	'content-type': 'multipart/form-data' 
+							// },
+							filePath: res.tempFilePaths[0], // 要上传的文件的路径
+							success: (res) => {
+								console.log(res) // todo 没有返回数据
+							}
+						})
+				    }
+				});
+			},
 			submitLogin(){
 				console.log(1111)
 				uni.login({ //正式登录，弹出授权窗
