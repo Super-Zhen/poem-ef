@@ -70,7 +70,7 @@ dialog.message = (mes = "操作失败", obj = {}) => {
 
 dialog.toast = (options) => {
 	uni.showToast({
-		title: options.mes,
+		title: options.msg,
 		icon: "none",
 		duration: 2000,
 		complete: () => {

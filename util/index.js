@@ -1,3 +1,4 @@
+import Vue from "vue"
 import stringify from "@/util/querystring";
 import cookie from '@/util/cookie'
 import {switchTab, push, replace, go, back, reLaunch} from './router.js'
@@ -213,6 +214,7 @@ export function routerPermissions(url, type) {
 		path = '/' + getCurrentPageUrlWithArgs()
 	}
 	console.log(Vue.prototype.$deviceType)
+	debugger
 	if (Vue.prototype.$deviceType == 'routine') {
 		console.log('————————')
 		console.log('当前是微信小程序，开始处理小程序登录方法')
@@ -291,11 +293,12 @@ export function routerPermissions(url, type) {
 		// 	})
 		// }
 	} else {
+		debugger
 		console.log(path)
 		// 如果不是小程序跳转到登录页
 		cookie.set('redirect', path)
-		push({
-			path: '/pages/user/Login/index',
+		uni.navigateTo({
+			url: '/pages/me/login',
 		})
 	}
 

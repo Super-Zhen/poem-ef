@@ -46,11 +46,19 @@
         ,{
             "path" : "pages/me/me",
             "style" : {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "我",
                 "enablePullDownRefresh": false
             }
             
         }
+		,{
+		    "path" : "pages/me/login",
+		    "style" : {
+		        "navigationBarTitleText": "登录",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/dic/authordetail",
             "style" :                                                                                    

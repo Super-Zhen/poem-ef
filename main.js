@@ -2,6 +2,7 @@ import App from './App'
 import api from '@/common/api'
 import store from "./store";
 import Vue from 'vue'
+import { _router } from '@/util/router.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$api = api 
@@ -18,6 +19,13 @@ Vue.prototype.$platform = uni.getSystemInfoSync().platform
 Vue.prototype.$deviceType = 'routine'
 store.commit('updateDevicetype', 'routine')
 // #endif
+
+Vue.prototype.$yrouter = _router
+// Object.defineProperty(Vue.prototype, '$yrouter', {
+// 	get() {
+// 		return _router
+// 	}
+// })
 
 App.mpType = 'app'
 const app = new Vue({

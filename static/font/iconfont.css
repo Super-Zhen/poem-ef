@@ -14,6 +14,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-xiangyou1:before {
+  content: "\e775";
+}
+
+.icon-qiehuanqiyou:before {
+  content: "\e603";
+}
+
 .icon-qiehuan:before {
   content: "\e8a8";
 }
