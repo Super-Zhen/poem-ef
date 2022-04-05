@@ -55,7 +55,23 @@
 		    "path" : "pages/me/login",
 		    "style" : {
 		        "navigationBarTitleText": "登录",
-		        "enablePullDownRefresh": false
+		        "enablePullDownRefresh": false,
+				"app-plus": {
+					"bounce": "none", //关闭窗口回弹效果
+					"titleNView": {
+						"buttons": [ //原生标题栏按钮配置,
+							{
+								"text": "注册" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"fontSize":"16px",
+								"color":"red",
+								"float":"right"
+							}
+						]
+						// "backButton": { //自定义 backButton
+						// 	"background": "#00FF00"
+						// }
+					}
+				}
 		    }
 		    
 		}
@@ -70,6 +86,15 @@
         }
         ,{
             "path" : "pages/dic/workdetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/me/register",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",

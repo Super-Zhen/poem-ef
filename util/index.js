@@ -9,6 +9,17 @@ export function setTitle(title){
 	})
 }
 
+// 生成随机数
+export function randomString(){
+	let data = Math.random()
+                .toString(36)
+                .substring(2, 15) +
+            Math.random()
+                .toString(36)
+                .substring(2, 15)
+	return data
+}
+
 // 返回顶部
 export function toTop(interval) {
 	uni.pageScrollTo({
@@ -174,7 +185,6 @@ export const handleLoginStatus = (location, complete, fail, success) => {
 	}
 
 	return new Promise((resolve, reject) => {
-	debugger
 		if (isAuth) { 
 			// todo
 		// if (true) {
@@ -193,7 +203,6 @@ export const handleLoginStatus = (location, complete, fail, success) => {
 				success
 			})
 		} else {
-			debugger
 			// 没有token，先校验用户是否授权，如果授权了，进行自动登录
 			routerPermissions(parseUrl(location))
 			reject()
@@ -214,7 +223,6 @@ export function routerPermissions(url, type) {
 		path = '/' + getCurrentPageUrlWithArgs()
 	}
 	console.log(Vue.prototype.$deviceType)
-	debugger
 	if (Vue.prototype.$deviceType == 'routine') {
 		console.log('————————')
 		console.log('当前是微信小程序，开始处理小程序登录方法')
@@ -293,7 +301,6 @@ export function routerPermissions(url, type) {
 		// 	})
 		// }
 	} else {
-		debugger
 		console.log(path)
 		// 如果不是小程序跳转到登录页
 		cookie.set('redirect', path)

@@ -74,13 +74,18 @@
     "h5" : {
         "devServer" : {
             "https" : false,
-            "port" : 8080,
+            // "port" : 8080,
             "disableHostCheck" : true,
             "proxy" : {
                 //这里的/api标记了以/api开头的接口需要使用此代理，会将下方的target拼接到接口的最前面
-                "^/" : {
+                "/call" : {
                     "target" : "http://150.158.34.153" //需要代理到的指定服务器
-                }
+					// "changeOrigin":true
+                },
+				"/poem":{
+					"target" : "http://localhost:3000",
+					"changeOrigin":true
+				}
             }
         }
     },

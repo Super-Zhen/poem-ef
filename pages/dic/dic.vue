@@ -135,16 +135,16 @@ export default {
         case "1":
           return this.type = "2";
         case "2":
-							uni.pageScrollTo({
-								scrollTop: 0,
-								duration: 1,
-							});
+			uni.pageScrollTo({
+				scrollTop: 0,
+				duration: 1,
+			});
           return this.type = "3";
         case "3":
-							uni.pageScrollTo({
-								scrollTop: 0,
-								duration: 1,
-							});
+			uni.pageScrollTo({
+				scrollTop: 0,
+				duration: 1,
+			});
           return this.type = "1";
       }
     },

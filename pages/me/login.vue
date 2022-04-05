@@ -16,11 +16,36 @@
 
 <script>
 	import dialog from '@/util/dialog.js'
+	// import Apimodule from '@/common/api/index.js'
 	export default {
 		data() {
 			return {
-				name:'',
+				phone:'',
 				password:''
+			}
+		},
+		onNavigationBarButtonTap(e) {
+			switch (e.index){
+				case 0:
+					console.log(0)
+					uni.navigateTo({
+						url:"/pages/me/register"
+					})
+					break;
+				case 1:
+					console.log(1)
+					break;
+				case 2:
+					console.log(2)
+					break;
+				case 2:
+					console.log(3)
+					break;
+				default:
+					uni.navigateTo({
+						url:"/pages/me/register"
+					})
+					break;
 			}
 		},
 		methods: {
@@ -37,6 +62,9 @@
 					})
 					return
 				}
+				this.$api.user.login({name:this.phone,password:this.password}).then(res=>{
+					console.log(res)
+				})
 			}
 		}
 	}
