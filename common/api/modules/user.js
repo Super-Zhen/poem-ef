@@ -27,10 +27,30 @@ function userIsExist(data={}){
 	})
 }
 
+// 注册添加用户
+function register(data={}){
+	return http.request({
+		url:'/poem/user/register',
+		data
+	})
+}
+
+// 获取用户信息
+
+function getUserInfo(data={}){
+	debugger
+	return http.request({
+		url:'/poem/user/getUserInfo',
+		data,
+		method:'get'
+	})
+}
 const user = {
 	login,
 	codeImg,
-	userIsExist
+	userIsExist,
+	register,
+	getUserInfo
 }
 
 export default user

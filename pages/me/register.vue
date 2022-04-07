@@ -79,7 +79,10 @@
 					console.log(res)
 					if(res.data){
 						this.$yrouter.push({
-							path:''
+							path:'/pages/me/registerTwo',
+							query:{
+								phone:this.phone
+							}
 						})
 					}else{
 						// this.isDisabled = true

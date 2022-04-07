@@ -158,8 +158,14 @@ export const handleLoginStatus = (location, complete, fail, success) => {
 	let page = [{
 		path: '/pages/index/index',
 		name: 'loading页面'
+	},{
+		path: '/pages/me/register',
+		name: '注册页面'
 	}
-	]
+	,{
+		path: '/pages/me/registerTwo',
+		name: '注册页面'
+	}]
 
 	// 是否可以访问
 	let isAuth = false
@@ -302,6 +308,7 @@ export function routerPermissions(url, type) {
 		// }
 	} else {
 		console.log(path)
+		debugger
 		// 如果不是小程序跳转到登录页
 		cookie.set('redirect', path)
 		uni.navigateTo({

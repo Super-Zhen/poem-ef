@@ -16,6 +16,7 @@
 
 <script>
 	import dialog from '@/util/dialog.js'
+	import cookie from '@/util/cookie.js'
 	// import Apimodule from '@/common/api/index.js'
 	export default {
 		data() {
@@ -49,7 +50,7 @@
 			}
 		},
 		methods: {
-			login(){
+			async login(){
 				if(!this.phone){
 					dialog.toast({
 						msg:'请输入手机号码'
@@ -62,9 +63,12 @@
 					})
 					return
 				}
-				this.$api.user.login({name:this.phone,password:this.password}).then(res=>{
-					console.log(res)
-				})
+				let result = await this.$api.user.login({phone:this.phone,password:this.password})
+				debugger
+				cookie.set('login_status',true)
+				cookie.set('token',result.data)
+				let info = await this.$api.user.getUserInfo()
+				console.log(info)
 			}
 		}
 	}
