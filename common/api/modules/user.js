@@ -1,48 +1,56 @@
-import {Http} from '@/util/request.js'
+import {
+	Http
+} from '@/util/request.js'
 
 const http = new Http()
 
 // 登录
-function login(data){
+function login(data) {
 	return http.request({
-		url:'/poem/user/login',
+		url: '/poem/user/login',
 		data
 	})
 }
 
 // 图片验证码
-function codeImg(data={}){
+function codeImg(data = {}) {
 	return http.request({
-		url:'/poem/user/codeimg',
+		url: '/poem/user/codeimg',
 		data,
-		method:'get'
+		method: 'get'
 	})
 }
 // 判断用户是否存在
-function userIsExist(data={}){
+function userIsExist(data = {}) {
 	return http.request({
-		url:'/poem/user/isexist',
+		url: '/poem/user/isexist',
 		data,
-		method:'get'
+		method: 'get'
 	})
 }
 
 // 注册添加用户
-function register(data={}){
+function register(data = {}) {
 	return http.request({
-		url:'/poem/user/register',
+		url: '/poem/user/register',
 		data
 	})
 }
 
 // 获取用户信息
-
-function getUserInfo(data={}){
-	debugger
+function getUserInfo(data = {}) {
 	return http.request({
-		url:'/poem/user/getUserInfo',
+		url: '/poem/user/getUserInfo',
 		data,
-		method:'get'
+		method: 'get'
+	})
+}
+
+// 更新用户信息
+function updataUserInfo(data = {}) {
+	return http.request({
+		url: '/poem/user/updataUserInfo',
+		data
 	})
 }
 const user = {
@@ -50,7 +58,8 @@ const user = {
 	codeImg,
 	userIsExist,
 	register,
-	getUserInfo
+	getUserInfo,
+	updataUserInfo
 }
 
 export default user

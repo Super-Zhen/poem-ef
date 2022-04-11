@@ -15,6 +15,7 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
 	import dialog from '@/util/dialog.js'
 	import cookie from '@/util/cookie.js'
 	// import Apimodule from '@/common/api/index.js'
@@ -50,6 +51,7 @@
 			}
 		},
 		methods: {
+			...mapActions(['setUserInfo']),
 			async login(){
 				if(!this.phone){
 					dialog.toast({
@@ -64,11 +66,17 @@
 					return
 				}
 				let result = await this.$api.user.login({phone:this.phone,password:this.password})
-				debugger
 				cookie.set('login_status',true)
 				cookie.set('token',result.data)
+				
 				let info = await this.$api.user.getUserInfo()
 				console.log(info)
+				if(info.data.id){
+					this.setUserInfo(info.data)
+					this.$yrouter.switchTab({
+						path:'/pages/dic/dic'
+					})
+				}
 			}
 		}
 	}
@@ -80,6 +88,7 @@
 	width: 60%;
 	text-align: center;
 	margin: 80rpx auto 0;
+	
 	.item{
 		border-bottom: 1rpx solid #999999;
 		input{

@@ -1,7 +1,7 @@
 <template>
 	<view class="phonebox">
 		<view class="phoneInp">
-			<input type="text" v-model="phone" disabled placeholder="手机号码">
+			<input type="text" v-model="name"  placeholder="用户名">
 		</view>
 		<view class="passwInp">
 			<input type="text" v-model="password" placeholder="密码">
@@ -16,7 +16,8 @@
 		data() {
 			return {
 				phone: '',
-				password: ''
+				password: '',
+				name:''
 			}
 		},
 		onLoad(options) {
@@ -26,21 +27,23 @@
 		},
 		methods: {
 			register(){
-				if(this.phone && this.password){
+				if(this.phone && this.password && this.name){
 					let param = {
 						phone:this.phone,
-						password: this.password
+						password: this.password,
+						name:this.name
 					}
 					this.$api.user.register(param).then(res=>{
 						console.log(res)
 						dialog.toast({
 							msg:res.data,
 							callback:()=>{
+								debugger
 								this.$yrouter.replace({
-									path:'/page/me/login',
-									query:{
-										phone:this.phone
-									}
+									path:'/pages/me/login',
+									// query:{
+									// 	phone:this.phone
+									// }
 								})
 							}
 						})

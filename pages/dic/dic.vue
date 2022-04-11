@@ -114,7 +114,7 @@ export default {
   },
   data() {
     return {
-      currentIndex:'2',
+      currentIndex:'1',
       type:"1",
       categoryList:[],
       subCategoryList:[],

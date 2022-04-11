@@ -33,7 +33,7 @@ export class Http {
 				data,
 				method,
 				header: {
-					"token": uni.getStorageSync('token'),
+					"Authorization": "Bearer "+uni.getStorageSync('token'),
 					"content-type": method == 'post' || method == 'POST' ?
 						'application/x-www-form-urlencoded' : 'application/json; charset=utf-8'
 				},
@@ -49,6 +49,7 @@ export class Http {
 					if (statusCode == 404) {
 						console.log('接口不存在')
 					} else if (statusCode == 401 || statusCode == 10002 ) {
+						debugger
 						// 将需要重新执行的接口缓存到一个队列中
 						addSubscriber(() => {
 							_this.request({

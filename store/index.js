@@ -135,6 +135,7 @@ const vuexStore = new Vuex.Store({
 			state,
 			commit
 		}, user) {
+			cookie.set('userInfo',user)
 			commit("updateUserInfo", user);
 		},
 		setStoreInfo({

@@ -1,13 +1,17 @@
 <template>
 	<view class="me">
-		<view class="item" @tap="toLogin">
+		<view class="item" @tap.native.stop="toLogin">
 			<view class="df aic">
 				<view class="headerImg">
 				</view>
-				<view class="mgl10">登录/注册</view>
+				<view class="df mgl10 ffcn fontS13">
+					<text>{{userInfo.realname?userInfo.realname:'登录/注册'}}</text>
+					<text class=" color999 mgt5" @tap.stop='toSetInfo'>编辑个人信息</text>
+				</view>
 			</view>
-			<view>
-				<image src="../../static/img/more.png" mode="widthFix" class="width20 mgt5"></image>
+			<view class="df aic" @tap.stop='toSetInfo'>
+				<text>主页</text>
+				<image src="../../static/img/more.png" mode="widthFix" class="width20 "></image>
 			</view>
 			
 		</view>
@@ -15,16 +19,26 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex'
 	export default {
 		data() {
 			return {
 				
 			}
 		},
+		computed:{
+			...mapGetters(['userInfo']),
+		},
 		methods: {
 			toLogin(){
+				if(this.userInfo.realname) return
 				this.$yrouter.push({
 					path:"/pages/me/login"
+				})
+			},
+			toSetInfo(){
+				this.$yrouter.push({
+					path:'/pages/me/setInfo'
 				})
 			}
 		}
