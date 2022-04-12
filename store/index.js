@@ -5,6 +5,7 @@ Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== "production";
 
 import cookie from "@/util/cookie";
+import { dateFormatL } from '@/util/index.js'
 // import {
 // 	getUserInfo,
 // 	getUser
@@ -135,6 +136,9 @@ const vuexStore = new Vuex.Store({
 			state,
 			commit
 		}, user) {
+			if(user.birthday){
+				user.birthday = dateFormatL('YYYY-mm-dd', new Date(user.birthday))
+			}
 			cookie.set('userInfo',user)
 			commit("updateUserInfo", user);
 		},

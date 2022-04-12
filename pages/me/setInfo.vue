@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="photoBox">
-			<view class="imgBox">
+			<view class="imgBox" @tap='chooseImg'>
 				<image src="../../static/img/WechatIMG326.jpeg" mode="widthFix" class="width60"></image>
 				<image src="../../static/img/photo.png" mode="widthFix" class="photo width20"></image>
 			</view>
@@ -31,7 +31,7 @@
 				<view>
 					<picker :value="sexIndex" :range="sexList" range-key="label" @change="changeSex">
 						<view class="uni-input df aic fontS13">
-							{{sexList[sexIndex].label}}
+							{{sexObj[userInfo.sex]}}
 						</view>
 					</picker>
 				</view>
@@ -45,7 +45,7 @@
 				<text class="fontS12 color999">生日</text>
 				<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
 					<view class="uni-input df aic fontS13">
-						{{date}}
+						{{userInfo.birthday?userInfo.birthday:date}}
 					</view>
 				</picker>
 			</view>
@@ -70,13 +70,15 @@
 
 <script>
 	import {
-		mapGetters
+		mapGetters,
+		mapActions
 	} from 'vuex'
+	import { dateFormatL } from '@/util/index.js'
 	export default {
 		data() {
 			return {
 				date: '未知',
-				sex: '',
+				sex: '0',
 				sexIndex: "0",
 				sexList: [{
 						label: '未知',
@@ -91,6 +93,11 @@
 						value: '2'
 					}
 				],
+				sexObj:{
+					'0':'未知',
+					"1":'男',
+					"2":'女'
+				},
 				region:[], //[{name:"北京市"} ,{name:'市辖区'}, {name:"东城区"}]
 				defaultRegion:['北京市','市辖区','东城区'],
 				defaultRegionCode:'110101'
@@ -109,20 +116,33 @@
 				// if(this.region.length){
 				// 	this.baseFormData.address = this.region.map(item=>item.name).join('')
 				// }
-				return this.region.map(item=>item.name).join(' ')
+				if(this.userInfo.address){
+					return this.userInfo.address
+				}else{
+					return this.region.map(item=>item.name).join(' ')
+				}
+				
 			}
 		},
 		methods: {
+			...mapActions(['setUserInfo']),
 			changeSex(e) {
 				let index = e.detail.value
 				this.sexIndex = index
 				this.sex = this.sexList[index].value
-				this.$api.user.updataUserInfo({sex:this.sex,phone:this.userInfo.phone}).then(res=>{
-					console.log(res)
-				})
+				let data  = {sex:this.sex,phone:this.userInfo.phone}
+				this.updataUserInfo(data)
 			},
 			bindDateChange: function(e) {
 				this.date = e.detail.value
+				let data = {birthday:dateFormatL('YYYY-mm-dd',new Date(this.date)),phone:this.userInfo.phone}
+				this.updataUserInfo(data)
+			},
+			updataUserInfo(data){
+				this.$api.user.updataUserInfo(data).then(res=>{
+					console.log(res)
+					this.setUserInfo(res.data)
+				})
 			},
 			getDate(type) {
 				const date = new Date();
@@ -141,7 +161,35 @@
 			},
 			handleGetRegion(region){
 				this.region = region
+				let address = region.map(item=>item.name).join(',')
+				let data  = {address,phone:this.userInfo.phone}
+				this.updataUserInfo(data)
 			},
+			chooseImg(){
+				uni.chooseImage({
+				    count: 1, //上传图片的数量，默认是9
+				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+				    sourceType: ['album'], //从相册选择
+				    success: function (res) {
+				        const tempFilePaths = res.tempFilePaths[0];    //拿到选择的图片，是一个数组
+						console.log(tempFilePaths)
+						// that.ImgFlag = true
+						that.baseFormData.image = tempFilePaths
+						// console.log(Apimodule.public.uploadImg())
+						uni.uploadFile({ //
+							url: Apimodule.public.uploadImg(), //上传地址
+							// url: 'http://192.168.7.102:8010/merchant/api/upload', //上传地址
+							fileType: "image",
+							name: '图片', //文件名称
+							header: { "Content-Type": "multipart/form-data" },
+							filePath: res.tempFilePaths[0], // 要上传的文件的路径
+							success: (res) => {
+								console.log(res) //
+							}
+						})
+				    }
+				});
+			}
 		}
 	}
 </script>

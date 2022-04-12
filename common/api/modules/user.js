@@ -53,6 +53,9 @@ function updataUserInfo(data = {}) {
 		data
 	})
 }
+
+// 上传头像
+
 const user = {
 	login,
 	codeImg,
