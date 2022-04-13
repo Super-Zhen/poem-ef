@@ -1,10 +1,12 @@
-import {Http} from '@/util/request.js'
+import {
+	Http
+} from '@/util/request.js'
 
 const http = new Http()
 
-function getWorksByCollection(data){
+function getWorksByCollection(data) {
 	return http.request({
-		url:'/call/getWorksByCollection',
+		url: '/call/getWorksByCollection',
 		data
 	})
 }
@@ -13,16 +15,16 @@ function getWorksByCollection(data){
  * 获取分类列表
  * @param {Object} data
  */
-function getCollectionKinds(data){
+function getCollectionKinds(data) {
 	return http.request({
-		url:'/call/getCollectionKinds',
+		url: '/call/getCollectionKinds',
 		data
 	})
 }
 
-function getAllCollections(data){
+function getAllCollections(data) {
 	return http.request({
-		url:'/call/getAllCollections',
+		url: '/call/getAllCollections',
 		data
 	})
 }
@@ -31,9 +33,9 @@ function getAllCollections(data){
  * 获取作者列表
  * @param {Object} data
  */
-function getHotAuthorsIncludeCountByLikers(data){
+function getHotAuthorsIncludeCountByLikers(data) {
 	return http.request({
-		url:'call/getHotAuthorsIncludeCountByLikers',
+		url: 'call/getHotAuthorsIncludeCountByLikers',
 		data
 	})
 }
@@ -42,9 +44,9 @@ function getHotAuthorsIncludeCountByLikers(data){
  * 获取作者简介
  * @param {Object} data
  */
-function getAuthorById2 (data){
+function getAuthorById2(data) {
 	return http.request({
-		url:'call/getAuthorById2',
+		url: 'call/getAuthorById2',
 		data
 	})
 }
@@ -53,9 +55,9 @@ function getAuthorById2 (data){
  * 获取作者作品列表
  * @param {Object} data
  */
-function getWorksByAuthor(data){
+function getWorksByAuthor(data) {
 	return http.request({
-		url:'call/getWorksByAuthor',
+		url: 'call/getWorksByAuthor',
 		data
 	})
 }
@@ -64,9 +66,9 @@ function getWorksByAuthor(data){
  * 获取作品详情
  * @param {Object} data
  */
-function getWorkById(data){
+function getWorkById(data) {
 	return http.request({
-		url:'/call/getWorkById',
+		url: '/call/getWorkById',
 		data
 	})
 }
@@ -74,13 +76,20 @@ function getWorkById(data){
 /**
  * 获取作品页列表 不是单一作者
  */
-function getAllWorksForH5(data){
+function getAllWorksForH5(data) {
 	return http.request({
-		url:'/call/getAllWorksForH5',
+		url: '/call/getAllWorksForH5',
 		data
 	})
 }
 
+// 获取名句
+function getQuotesIncludeCount(data = {}) {
+	return http.request({
+		url: '/call/getQuotesIncludeCount',
+		data
+	})
+}
 const works = {
 	getWorksByCollection,
 	getCollectionKinds,
@@ -89,6 +98,7 @@ const works = {
 	getAuthorById2,
 	getWorksByAuthor,
 	getWorkById,
-	getAllWorksForH5
+	getAllWorksForH5,
+	getQuotesIncludeCount
 }
 export default works

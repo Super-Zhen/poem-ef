@@ -1,0 +1,168 @@
+.hm-cover-card {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	width: 650upx;
+	height: calc(70vh);
+	margin: 5vh 0;
+	transition: all 1s;
+}
+
+.active {
+	width: 650upx;
+	height: calc(75vh);
+	margin: 0 auto;
+}
+
+.box {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-left: 15.58rpx;
+	border-radius: 18.96rpx;
+	overflow: hidden;
+	box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.8);
+	background-color: #ffffff;
+	width: 96%;
+	margin: 0 auto;
+	min-height: 100%;
+	padding-bottom: 50upx;
+	position: relative;
+}
+
+.quote{
+	height: 50vh;
+	display: flex;
+	flex-direction: row-reverse;
+	
+}
+.quote>text{
+	 writing-mode: vertical-lr;/*从左向右 从右向左是 writing-mode: vertical-rl;*/  
+	 font-size: 56rpx;
+	 letter-spacing: 26rpx;
+	 margin-left: 26rpx;
+	 font-family: '楷体';
+}
+.body{
+	padding: 100rpx 40rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 70%;
+}
+/* .body {
+	display: flex;
+	position: relative;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 0;
+	border-radius: 0;
+	box-shadow: 0px 10px 30px rgba(209, 213, 223, 0.5);
+	width: 100%;
+	overflow: hidden;
+}
+
+.entryPic {
+	width: 100%;
+	display: block;
+}
+
+.ft {
+	display: flex;
+	position: relative;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 92%;
+	margin: 50upx auto;
+}
+
+.num {
+	position: absolute;
+	bottom: -45upx;
+	right: -46upx;
+	width: 100upx;
+	text-align: center;
+}
+
+.wrap {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.title {
+	position: relative;
+	opacity: 1;
+	width: 100%;
+	overflow: hidden;
+	text-align: justify;
+	text-overflow: ellipsis;
+	line-height: 50.86rpx;
+	color: #141821;
+	font-size: 30.06upx;
+	font-weight: 400;
+	flex-shrink: 0;
+}
+
+.zans {
+	width: 100%;
+	position: absolute;
+	bottom: 20upx;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.zan-img {
+	width: 35upx;
+	margin-right: 10upx;
+}
+
+.zan-num {
+	font-size: 26upx;
+	color: #999;
+}
+
+.text {
+	position: absolute;
+	width: 100%;
+	bottom: 70upx;
+	left: 0;
+	text-align: center;
+	opacity: 1;
+	margin-top: 13.64rpx;
+	line-height: 42.96rpx;
+	color: #858997;
+	font-family: MicrosoftYaHei, Microsoft YaHei;
+	font-size: 28.17rpx;
+	font-weight: normal;
+}
+
+.shoucangWrap {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 5.84rpx;
+	border-radius: 38.96rpx;
+	background-color: #f8f8f8;
+	width: 77.92rpx;
+	height: 77.92rpx;
+	flex-shrink: 0;
+	margin-left: 10upx;
+	margin-right: -30upx;
+}
+
+.shoucangs {
+	background-color: #fec4b0 !important;
+}
+
+.shoucang {
+	width: 35.06rpx;
+	height: 29.22rpx;
+}
+ */
