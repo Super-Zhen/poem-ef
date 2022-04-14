@@ -3,14 +3,15 @@
 	align-items: center;
 	flex-direction: row;
 	width: 650upx;
-	height: calc(70vh);
+	height: calc(60vh);
 	margin: 5vh 0;
 	transition: all 1s;
+	position: relative;
 }
 
 .active {
 	width: 650upx;
-	height: calc(75vh);
+	height: calc(80vh);
 	margin: 0 auto;
 }
 
@@ -25,13 +26,13 @@
 	background-color: #ffffff;
 	width: 96%;
 	margin: 0 auto;
-	min-height: 100%;
+	min-height: 84%;
 	padding-bottom: 50upx;
 	position: relative;
 }
 
 .quote{
-	height: 50vh;
+	/* height: 40vh; */
 	display: flex;
 	flex-direction: row-reverse;
 	
@@ -49,6 +50,27 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	width: 70%;
+}
+.authorBox{
+	position: absolute;
+	bottom: 100rpx;
+	left: 100rpx;
+}
+.author{
+	 writing-mode: vertical-lr;
+	 letter-spacing: 14rpx;
+	 
+}
+.dynasty{
+	margin-top: 20rpx;
+	display: inline-block;
+	font-size: 14prx;
+	background-color: red;
+	padding: 6rpx;
+	color: #fff;
+	border-radius: 10rpx;
+	letter-spacing: 0;
+	
 }
 /* .body {
 	display: flex;

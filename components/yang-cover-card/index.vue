@@ -1,5 +1,5 @@
 <template>
-	<div class="hm-cover-card" :class="index?'active':''">
+	<div class="hm-cover-card" @tap='todetail(options.objectId)' :class="index?'active':''">
 		<div class="box">
 			<view class="body">
 				<view class="df quote">
@@ -7,15 +7,15 @@
 						<text :key="indexs">{{item}}</text>
 					</template>
 				</view>
-				<view class="df">
-					<text>{{options.authorName}}</text>
-					<text>{{options.dynasty}}</text>
-				</view>
 				
+				
+			</view>
+			<view class="df ffcn mg authorBox">
+				<text class="author">{{options.authorName}} <text class="dynasty">{{options.dynasty}}</text></text>
+				<!-- <text class="dynasty">{{options.dynasty}}</text> -->
 			</view>
 			
 			
-			{{options.objectId}}
 			<!-- <div class="body">
 				<image class="entryPic" :src="options.entryPic" mode="widthFix" />
 			</div>
@@ -71,10 +71,10 @@
 		},
 		computed:{
 			option(){
-				
-				this.options.quote = this.options.quote.split('，').map(item=>{
-					let items = item.replace('。','')
-					return items
+				let data = this.options.quote.replace(/。|？|\，/g , '|')
+				this.options.quote = data.split('|').map(item=>{
+					// let items = item.replace(/。/g,'')
+					return item
 				})
 				return this.options
 			}
@@ -89,6 +89,9 @@
 				let res = this.$api.sentenceZan({
 					id: this.options.id
 				})
+			},
+			todetail(id){
+				console.log(id)
 			}
 		}
 	};

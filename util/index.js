@@ -46,6 +46,11 @@ export function randomString(){
 	return data
 }
 
+//生成指定范围的随机数
+export function randomNum (max, min) {
+  const num = Math.floor(Math.random() * (max - min + 1)) + min
+  return num
+}
 // 返回顶部
 export function toTop(interval) {
 	uni.pageScrollTo({

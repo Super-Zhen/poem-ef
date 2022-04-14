@@ -8,13 +8,13 @@
 					</hm-cover-card>
 				</swiper-item>
 			</swiper>
-			<!-- <text class="cpy">©2020  浩动技术支持</text> -->
 		</view>
 	</view>
 </template>
 
 <script>
 	import HmCoverCard from '@/components/yang-cover-card/index.vue'
+	import { randomNum } from '@/util/index.js'
 	export default {
 		components: {
 			HmCoverCard
@@ -52,74 +52,14 @@
 				//this.init();
 			},
 			async init() {
-				// uni.showLoading({
-				// 	title: '加载中...'
-				// })
-
-				// let items = [{
-				// 		content: "看时间不是为了起床，而是看还能睡多久。",
-				// 		created_at: "2020-12-27 22:38:31",
-				// 		// good_cover: "../../static/pic/1.jpg",
-				// 		id: 1,
-				// 		name: "看时间",
-				// 		updated_at: "2020-12-27 22:38:31",
-				// 		zan: 0
-				// 	},
-				// 	{
-				// 		content: "一个人最长的恋爱史，大概就是自恋了。",
-				// 		created_at: "2020-12-27 22:38:01",
-				// 		// good_cover: "../../static/pic/2.jpg",
-				// 		id: 2,
-				// 		img_id: "205",
-				// 		name: "自恋",
-				// 		updated_at: "2020-12-27 22:38:01",
-				// 		zan: 0
-				// 	},
-				// 	{
-				// 		content: "今天天气很好，在房间里宅久了，准备去客厅散散心。",
-				// 		created_at: "2020-12-27 22:37:36",
-				// 		// good_cover: "../../static/pic/3.jpg",
-				// 		id: 3,
-				// 		img_id: "203",
-				// 		name: "散心",
-				// 		updated_at: "2020-12-27 22:37:36",
-				// 		zan: 0
-				// 	},
-				// 	{
-				// 		content: "人在寂寞中有三种状态。一是惶惶不安，茫无头绪，百事无心，一心逃出寂寞。二是渐渐习惯于寂寞，安下心来，建立起生活的条理，用读书、写作或别的事务来驱逐寂寞。三是寂寞本身成为一片诗意的土壤，一种创造的契机，诱发出关于存在、生命、自我的深邃思考和体验。",
-				// 		created_at: "2020-12-27 22:37:04",
-				// 		// good_cover: "../../static/pic/4.jpg",
-				// 		id: 4,
-				// 		img_id: "199",
-				// 		name: "周国平，《独处是一种能力》",
-				// 		updated_at: "2020-12-27 22:37:04",
-				// 		zan: 0
-				// 	},
-				// 	{
-				// 		content: "为别人而去刻意改变自己是无意义的，因为那样你就不是你了。TA连真正的你都不爱，就更不会爱上不是你的你了。",
-				// 		created_at: "2020-12-27 22:36:29",
-				// 		// good_cover: "../../static/pic/1.jpg",
-				// 		id: 5,
-				// 		img_id: "202",
-				// 		name: "无意义的",
-				// 		updated_at: "2020-12-27 22:36:29",
-				// 		zan: 0
-				// 	}
-				// ];
-				// uni.hideLoading();
-				// items.map((itd) => {
-				// 	let options = {
-				// 		id: itd.id,
-				// 		entryPic: itd.good_cover,
-				// 		title: itd.name,
-				// 		text: itd.content,
-				// 		zan: itd.zan,
-				// 		shoucang: '/static/hm-cover-card/images/img_25361_0_0.png'
-				// 	}
-				// 	this.item.push(options)
-				// })
-				this.$api.works.getQuotesIncludeCount({authorId: '',collectionId: '',dynasty: '',kind: '',page: 1,perPage: 30}).then(res=>{
-					console.log(res)
+				this.$api.works.getQuotesIncludeCount({
+					authorId: '',
+					collectionId: '',
+					dynasty: '',
+					kind: '',
+					page: randomNum(1,142),
+					perPage: 30
+				}).then(res => {
 					this.item = res.result.quotes
 				})
 
@@ -140,7 +80,7 @@
 <style lang="less">
 	.content {
 		width: 100%;
-		height: calc(100vh);
+		height: calc(100vh - 44px - env(safe-area-inset-bottom));
 		position: relative;
 
 		.bg {
@@ -149,7 +89,7 @@
 			align-items: center;
 			justify-content: center;
 			width: 100%;
-			height: calc(100vh);
+			height: calc(100vh - 44px - env(safe-area-inset-bottom));
 			box-sizing: border-box;
 			flex-direction: column;
 
