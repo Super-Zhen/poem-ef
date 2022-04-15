@@ -1,21 +1,21 @@
 <template>
-	<div class="hm-cover-card" @tap='todetail(options.objectId)' :class="index?'active':''">
+	<div class="hm-cover-card" :class="index?'active':''">
 		<div class="box">
 			<view class="body">
 				<view class="df quote">
-					<template v-for="(item,indexs) in option.quote" >
-						<text :key="indexs">{{item}}</text>
+					<template v-for="(item,indexs) in option.quote">
+						<text :key="indexs" v-if='item'>{{item}}</text>
 					</template>
 				</view>
-				
-				
+
+
 			</view>
 			<view class="df ffcn mg authorBox">
 				<text class="author">{{options.authorName}} <text class="dynasty">{{options.dynasty}}</text></text>
 				<!-- <text class="dynasty">{{options.dynasty}}</text> -->
 			</view>
-			
-			
+
+
 			<!-- <div class="body">
 				<image class="entryPic" :src="options.entryPic" mode="widthFix" />
 			</div>
@@ -59,7 +59,7 @@
 				type: Object,
 				default: function() {
 					return {
-						
+
 					};
 				}
 			}
@@ -69,10 +69,10 @@
 				zan: false,
 			};
 		},
-		computed:{
-			option(){
-				let data = this.options.quote.replace(/。|？|\，/g , '|')
-				this.options.quote = data.split('|').map(item=>{
+		computed: {
+			option() {
+				let data = this.options.quote.replace(/。|？|\，|；|、|！|：/g, '|')
+				this.options.quote = data.split('|').map(item => {
 					// let items = item.replace(/。/g,'')
 					return item
 				})
@@ -89,9 +89,6 @@
 				let res = this.$api.sentenceZan({
 					id: this.options.id
 				})
-			},
-			todetail(id){
-				console.log(id)
 			}
 		}
 	};

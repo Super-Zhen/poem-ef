@@ -129,6 +129,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/dic/collection",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": true
+            }
+            
+        }
     ],
 	"tabBar": {
 	    "color": "#8a8a8a",
@@ -138,7 +147,7 @@
 		"height":"50px",
 	    "backgroundColor": "#ffffff",
 	    "list": [{
-	        "pagePath": "pages/index/index",
+	        "pagePath": "pages/home/home",
 	        "iconPath": "static/img/pen.png",
 	        "selectedIconPath": "static/img/penactive.png",
 	        "text": "摘录"

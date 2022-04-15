@@ -90,6 +90,15 @@ function getQuotesIncludeCount(data = {}) {
 		data
 	})
 }
+
+// 获取选集信息
+function getCollectionById(data={}){
+	return http.request({
+		url:'/call/getCollectionById',
+		data
+	})
+}
+
 const works = {
 	getWorksByCollection,
 	getCollectionKinds,
@@ -99,6 +108,7 @@ const works = {
 	getWorksByAuthor,
 	getWorkById,
 	getAllWorksForH5,
-	getQuotesIncludeCount
+	getQuotesIncludeCount,
+	getCollectionById
 }
 export default works

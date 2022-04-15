@@ -37,7 +37,7 @@
 					</view>
 					<view class="df ffrw">
 						<view v-for="(item,index) in items.subCategoryList" v-if="index<12" :key="index"
-							class="wid25 df jcc">
+							class="wid25 df jcc" @tap=categorySubClick(item)>
 							<view class="namedesc">
 								<text class="fontS14 color999">{{item.shortDesc}}</text>
 								<text class="fontS18 ">{{item.name}}</text>
@@ -160,6 +160,12 @@
 			},
 			categorySubClick(category) {
 				console.log(category);
+				this.$yrouter.push({
+					path:'/pages/dic/collection',
+					query:{
+						collection:category.objectId
+					}
+				})
 			},
 			handerNavClick(id) {
 				this.currentIndex = id ? id : '1'
@@ -224,7 +230,6 @@
 			// 上一页
 			toPre() {
 				this.pageParam.page--
-				debugger
 				if (this.pageParam.page <= 0) {
 					this.pageParam.page = 1
 					return
@@ -234,7 +239,6 @@
 
 			// 获取作者详情
 			toAuthorDetail(id, name) {
-				debugger
 				this.$router.push({
 					path: `/pages/dic/authordetail?id=${id}&name=${name}`
 				})
@@ -257,6 +261,15 @@
 					url: `/pages/dic/workdetail?id=${id}`
 				})
 			},
+			toCollection(param) {
+				console.log(param.objectId)
+				this.$yrouter.push({
+					path:'/pages/dic/collection',
+					query:{
+						collection:param.objectId
+					}
+				})
+			},
 
 		},
 		onReachBottom() {
@@ -265,6 +278,7 @@
 			this.pageParam.page++
 			this.getAllWorksForH5(this.pageParam)
 		},
+		
 		mounted() {
 			// this.getHotAuthorsIncludeCountByLikers(this.pageParam)
 			this.init()

@@ -4,7 +4,7 @@
 			<swiper class="swiper" previous-margin="54rpx" next-margin="54rpx" :indicator-dots="indicatorDots"
 				@change="change" :autoplay="autoplay" :interval="interval" :duration="duration" :circular="circular">
 				<swiper-item v-for="(itt,idx) in item" :key="idx">
-					<hm-cover-card @click="like" :options="itt" :index="index==idx?true:false" :idx="idx">
+					<hm-cover-card @click.native="like(itt)" :options="itt" :index="index==idx?true:false" :idx="idx">
 					</hm-cover-card>
 				</swiper-item>
 			</swiper>
@@ -58,6 +58,7 @@
 					dynasty: '',
 					kind: '',
 					page: randomNum(1,142),
+					// page: 1,
 					perPage: 30
 				}).then(res => {
 					this.item = res.result.quotes
@@ -66,12 +67,9 @@
 			},
 			like(val) {
 				console.log(val)
-				if (val.zan) {
-					this.item[val.idx].zan++
-				} else {
-					this.item[val.idx].zan--
-				}
-				//this.init();
+				this.$yrouter.push({
+					path:'/pages/dic/workdetail?id='+val.work.objectId
+				})
 			}
 		}
 	}
@@ -108,37 +106,6 @@
 					flex-direction: column;
 				}
 			}
-
-			.note {
-				width: 96%;
-				padding-top: 38px;
-				margin-bottom: 10px;
-				position: relative;
-				background: url(../../static/img/bg-note-top.png) top center no-repeat;
-			}
-
-			.note-container {
-				width: 100%;
-				text-indent: 2em;
-				background: url(../../static/img/bg-note-middle.png) top center repeat-y;
-				overflow: hidden;
-
-				text {
-					width: 60%;
-					display: block;
-					margin: 0 auto;
-					text-align: justify;
-					line-height: 60upx;
-				}
-			}
-
-			.note-bottom {
-				width: 100%;
-				padding-bottom: 34px;
-				background: url(../../static/img/bg-note-bottom.png) bottom center no-repeat;
-			}
-
-
 		}
 
 	}
