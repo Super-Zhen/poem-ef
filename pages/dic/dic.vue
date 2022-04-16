@@ -37,7 +37,7 @@
 					</view>
 					<view class="df ffrw">
 						<view v-for="(item,index) in items.subCategoryList" v-if="index<12" :key="index"
-							class="wid25 df jcc" @tap=categorySubClick(item)>
+							class="wid25 df jcc" @tap="categorySubClick(item)">
 							<view class="namedesc">
 								<text class="fontS14 color999">{{item.shortDesc}}</text>
 								<text class="fontS18 ">{{item.name}}</text>
@@ -57,7 +57,7 @@
 					</view>
 					<view class="df ffrw">
 						<view v-for="(item,index) in items.subCategoryList" v-if="index<12" :key="index"
-							class="wid25 df jcc">
+							class="wid25 df jcc" @tap="categorySubClick(item)">
 							<view class="namedesc3">
 								<view>
 									<image :src="item.cover" mode="aspectFill"></image>
@@ -161,9 +161,9 @@
 			categorySubClick(category) {
 				console.log(category);
 				this.$yrouter.push({
-					path:'/pages/dic/collection',
-					query:{
-						collection:category.objectId
+					path: '/pages/dic/collection',
+					query: {
+						collection: category.objectId
 					}
 				})
 			},
@@ -264,9 +264,9 @@
 			toCollection(param) {
 				console.log(param.objectId)
 				this.$yrouter.push({
-					path:'/pages/dic/collection',
-					query:{
-						collection:param.objectId
+					path: '/pages/dic/collection',
+					query: {
+						collection: param.objectId
 					}
 				})
 			},
@@ -278,7 +278,7 @@
 			this.pageParam.page++
 			this.getAllWorksForH5(this.pageParam)
 		},
-		
+
 		mounted() {
 			// this.getHotAuthorsIncludeCountByLikers(this.pageParam)
 			this.init()
