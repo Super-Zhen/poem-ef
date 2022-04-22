@@ -24,7 +24,7 @@ export class Http {
 	} = {}) {
 		let baseUrl = ''
 	//#ifdef APP-PLUS
-		// baseUrl = "http://150.158.34.153" //后台请求接口的公共部分
+		baseUrl = "http://150.158.34.153" //后台请求接口的公共部分
 	//#endif
 		let _this = this;
 		return new Promise((resolve, reject) => {
@@ -79,12 +79,13 @@ export class Http {
 						uni.navigateTo({
 							url:"/pages/login/login"
 						})
-					} else if (statusCode.startsWith('5')) {
-						uni.showModal({
-							content: '服务器报错，请重试！',
-							showCancel: false
-						});
-					}
+					} 
+					// else if (statusCode.startsWith('5')) {
+					// 	uni.showModal({
+					// 		content: '服务器报错，请重试！',
+					// 		showCancel: false
+					// 	});
+					// }
 				}
 			})
 		})

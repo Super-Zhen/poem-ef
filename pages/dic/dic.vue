@@ -196,15 +196,16 @@
 				try {
 					let res = await this.$api.works.getCollectionKinds()
 					// this.categoryList = res.result
-					let {
-						result: allcollect
-					} = await this.$api.works.getAllCollections()
+					let {result:allcollect} = await this.$api.works.getAllCollections()
+					console.log('result',allcollect)
 					for (let i = 0; i < res.result.length; i++) {
 						let typeList = allcollect.filter(item => item.kindId === res.result[i].localId)
 						if (typeList.length) res.result[i].subCategoryList = typeList
 					}
 					// this.categoryList = res.result
+					// console.log('1111',item.subCategoryList)
 					this.categoryList = res.result.filter(item => item.subCategoryList)
+					console.log(this.categoryList)
 					this.subCategoryList = this.categoryList[0].subCategoryList
 				} catch (e) {
 					//TODO handle the exception
@@ -279,7 +280,7 @@
 			this.getAllWorksForH5(this.pageParam)
 		},
 
-		mounted() {
+		onLoad() {
 			// this.getHotAuthorsIncludeCountByLikers(this.pageParam)
 			this.init()
 		}

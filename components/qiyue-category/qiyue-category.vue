@@ -95,14 +95,9 @@
 			uni.getSystemInfo({
 				success: res => {
 					console.log(res)
-					// #ifdef APP-PLUS
-					console.log(res.windowHeight)
-					this.height = res.windowHeight-50-75; // 获取的高度为屏幕的高度减去状态栏的高度 减去底部导航的高度 以及顶部的高度
-					// #endif
-					// #ifdef H5
-					console.log(res.windowHeight)
-					this.height = res.windowHeight-50; 
-					// #endif
+					console.log('windowHeight',res.windowHeight)
+					this.height = res.windowHeight-50; // 获取的高度为屏幕的高度减去状态栏的高度 减去底部导航的高度 以及顶部的高度
+					
 					
 				}
 			})
