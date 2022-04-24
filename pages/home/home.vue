@@ -32,7 +32,7 @@
 
 			}
 		},
-		async onShow() {
+		async onLoad() {
 			this.item = [];
 			this.init();
 		},

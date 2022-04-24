@@ -94,5 +94,7 @@
 	};
 </script>
 <style>
+	
+	@import url('~@/static/font/kaiti.css');
 	@import './index.response.css';
 </style>
