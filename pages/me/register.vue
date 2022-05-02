@@ -4,6 +4,7 @@
 			<input type="text" v-model="phone" placeholder="手机号码">
 		</view>
 		<view class="codeInp">
+			<!-- <view v-if='imgUrl'>{{imgUrl}}</view> -->
 			<image :src="imgUrl" mode="widthFix" class="width80" @tap="getCodeImg"></image>
 			<input type="text" v-model="codes" placeholder="验证码">
 		</view>
@@ -19,11 +20,11 @@
 	export default {
 		data() {
 			return {
-				imgUrl: '',
+				imgUrl:"",
 				phone: '',
-				codeData: '',
+				codeData: '', // 返回的数据和生成的数据
 				codes: '',
-				code: ''
+				randomData:''
 			}
 		},
 		onLoad() {
@@ -41,17 +42,12 @@
 			}
 		},
 		methods: {
-			getCodeImg() {
+			async getCodeImg() {
 				let data = randomString()
-				this.codeData = data
-				this.$api.user.codeImg({
-					data
-				}).then(res => {
-					this.codes = ''
-					this.imgUrl = res.data.imgUrl
-					this.code = res.data.text
-					this.randomData = res.data.codeData
-				})
+				this.randomData = data
+				let res = await this.$api.user.codeImg({data})
+				this.imgUrl = res.data.imgUrl
+				this.codeData = res.data.codeData
 			},
 			toNext() {
 				if (!this.phone) {
@@ -66,7 +62,8 @@
 					})
 					return
 				}
-				if (this.codeData != this.randomData || this.code != this.codes.toLowerCase()) {
+				debugger
+				if (this.codeData != this.randomData) {
 					this.getCodeImg()
 					dialog.toast({
 						msg: '验证码错误请重试'
@@ -74,6 +71,8 @@
 					return
 				}
 				this.$api.user.userIsExist({
+					codeData:this.codeData,
+					codes:this.codes,
 					phone: this.phone
 				}).then(res => {
 					console.log(res)
@@ -86,10 +85,12 @@
 						})
 					}else{
 						// this.isDisabled = true
-						this.codes = ''
-						this.getCodeImg()
 						dialog.toast({
-							msg:res.message
+							msg:res.message,
+							callback:()=>{
+								this.codes = ''
+								this.getCodeImg()
+							}
 						})
 					}
 				})

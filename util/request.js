@@ -1,5 +1,6 @@
 let isRefreshing = true;
 let subscribers = [];
+import dialog from './dialog.js'
 
 function onAccessTokenFetched() {
 	subscribers.forEach((callback) => {
@@ -43,6 +44,7 @@ export class Http {
 				},
 				complete: res => {
 					// callback token过期后重新请求接口，接口返回的数据
+					debugger
 					if (callback) return callback(res.data);
 					let {statusCode,errMsg} = res;
 					// console.log(statusCode, 'statusCode')
@@ -78,6 +80,11 @@ export class Http {
 						// 提示用户登录信息不全，需要获取用户信息
 						uni.navigateTo({
 							url:"/pages/login/login"
+						})
+					}else if(statusCode===60001){ // 验证时效问题
+					debugger
+						dialog.toast({
+							msg:res.data.msg
 						})
 					} 
 					// else if (statusCode.startsWith('5')) {
