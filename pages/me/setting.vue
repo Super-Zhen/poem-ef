@@ -1,7 +1,10 @@
 <template>
-	<view >
-		<borderlines></borderlines>
+	<view class="pdb30">
+		<borderlines :list="list"></borderlines>
 		<!-- <view class="height30 bgC6cc051"></view> -->
+		<view class="mgt40">
+			<button class="fontS16">退出登录</button>
+		</view>
 	</view>
 </template>
 
@@ -10,7 +13,7 @@
 	export default {
 		data() {
 			return {
-				
+				list:[]
 			}
 		},
 		components:{
