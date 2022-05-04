@@ -1,6 +1,6 @@
 <template>
     <view class="uni_topbar" :style="style">
-        <view class="inner flexbox flex_alignc flex_justc" :class="[fixed ? 'fixed' : '']" :style="[{'height': customBarH + 'px', 'padding-top': navPadding + 'px', 'color': titleTintColor}, bgColor]">
+        <view class="inner flexbox flex_alignc " :class="[fixed ? 'fixed' : '']" :style="[{'height': customBarH + 'px', 'padding-top': navPadding + 'px', 'color': titleTintColor}, bgColor]">
             <!-- 返回 -->
             <!-- <text class="uni_icoBack iconfont icon-arrL" v-if="isBack" @tap="goBack"></text> -->
             <view v-if="isBack" @tap="goBack">
@@ -12,10 +12,11 @@
             <!-- <view class="flex1" v-if="!search && center"></view> -->
             <!-- #endif -->
 			<view class="uni_title flex1" :class="[center ? 'uni_titleCenter' : '']" :style="[isBack ? {'font-size': '32upx', 'padding-left': '0'} : '']" v-if="!search && title">
-				<view v-if="title">
+				<view v-if="title" class="navbox">
 					{{title}}
 				</view>
 				<!-- <view v-else class="navbox">
+					<text style="color: #000000;">111</text>
 					<slot name="center"></slot>
 				</view> -->
 			</view>
@@ -100,6 +101,9 @@
 		align-items: center;
 		justify-content: center;
 	}
+	.flex1{
+		flex:1
+	}
 	.flexbox{
 		display: flex;
 	}
@@ -107,6 +111,6 @@
 		align-items: center;
 	}
 	.flex_justc{
-		justify-content: space-between;
+		justify-content: center;
 	}
 </style>

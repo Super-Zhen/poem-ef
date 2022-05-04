@@ -166,6 +166,7 @@
 				this.updataUserInfo(data)
 			},
 			chooseImg(){
+				let that = this
 				uni.chooseImage({
 				    count: 1, //上传图片的数量，默认是9
 				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -174,10 +175,10 @@
 				        const tempFilePaths = res.tempFilePaths[0];    //拿到选择的图片，是一个数组
 						console.log(tempFilePaths)
 						// that.ImgFlag = true
-						that.baseFormData.image = tempFilePaths
+						// that.baseFormData.image = tempFilePaths
 						// console.log(Apimodule.public.uploadImg())
 						uni.uploadFile({ //
-							url: Apimodule.public.uploadImg(), //上传地址
+							url: 'http://localhost:3000/poem/user/uploadImg', //上传地址
 							// url: 'http://192.168.7.102:8010/merchant/api/upload', //上传地址
 							fileType: "image",
 							name: '图片', //文件名称

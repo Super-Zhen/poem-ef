@@ -47,7 +47,33 @@
             "path" : "pages/me/me",
             "style" : {
                 "navigationBarTitleText": "我",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom",
+				"app-plus": {
+					"bounce": "none" //关闭窗口回弹效果
+					// "titleNView": {
+					// 	"buttons": [ //原生标题栏按钮配置,
+					// 		{
+					// 			"type":"menu",
+					// 			"fontSize":"23px"
+					// 		},{
+					// 			 "type":"share",
+					// 			 "fontSize":"23px"
+					// 		},{
+					// 			"type": "favorite",
+					// 			"fontSize":"24px"
+					// 		}
+					// 		// {
+					// 		// 	"text": "全部" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+					// 		// 	"fontSize":"14px",
+					// 		// 	"float":"left"
+					// 		// }
+					// 	],
+					// 	"backButton": { //自定义 backButton
+					// 		"background": "#00FF00"
+					// 	}
+					// }
+				}
             }
             
         }
@@ -135,6 +161,32 @@
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/me/setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#ffffff",
+				"app-plus": {
+					"bounce": "none", //关闭窗口回弹效果
+					"titleNView": {
+						"buttons": [ //原生标题栏按钮配置,
+							{
+								"text": "我" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"fontSize":"16px",
+								// "color":"red",
+								"float":"left"
+							}
+						]
+						// "backButton": { //自定义 backButton
+						// 	"background": "#00FF00"
+						// }
+					}
+				}
             }
             
         }
