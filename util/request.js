@@ -44,14 +44,13 @@ export class Http {
 				},
 				complete: res => {
 					// callback token过期后重新请求接口，接口返回的数据
-					debugger
+					// console.log(res.header['Set-cookie'])
 					if (callback) return callback(res.data);
 					let {statusCode,errMsg} = res;
 					// console.log(statusCode, 'statusCode')
 					if (statusCode == 404) {
 						console.log('接口不存在')
 					} else if (statusCode == 401 || statusCode == 10002 ) {
-						debugger
 						// 将需要重新执行的接口缓存到一个队列中
 						addSubscriber(() => {
 							_this.request({

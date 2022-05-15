@@ -5,9 +5,17 @@ import {
 const http = new Http()
 
 // 登录
-function login(data) {
+function login(data = {}) {
 	return http.request({
 		url: '/poem/user/login',
+		data
+	})
+}
+
+// 退出
+function loginout(data = {}) {
+	return http.request({
+		url: '/poem/user/loginout',
 		data
 	})
 }
@@ -58,6 +66,7 @@ function updataUserInfo(data = {}) {
 
 const user = {
 	login,
+	loginout,
 	codeImg,
 	userIsExist,
 	register,

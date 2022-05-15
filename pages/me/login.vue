@@ -68,7 +68,7 @@
 				let result = await this.$api.user.login({phone:this.phone,password:this.password})
 				cookie.set('login_status',true)
 				cookie.set('token',result.data)
-				
+
 				let info = await this.$api.user.getUserInfo()
 				console.log(info)
 				if(info.data.id){
@@ -88,13 +88,13 @@
 	width: 60%;
 	text-align: center;
 	margin: 80rpx auto 0;
-	
+
 	.item{
 		border-bottom: 1rpx solid #999999;
 		input{
 			padding: 16rpx;
 		}
-		
+
 	}
 	.loginBtn{
 		height: 70rpx;

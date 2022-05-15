@@ -27,7 +27,7 @@
 				randomData:''
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getCodeImg()
 		},
 		watch:{

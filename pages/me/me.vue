@@ -22,12 +22,12 @@
 			<!-- <text slot="iconfont" class="uni_btnIco iconfont icon-choose03" @tap="aaa"></text> -->
 			<!-- <image slot="image" style="width: 60rpx;" class="uni_btnImage" src="../../static/img/dic.png" mode="widthFix" @tap="ddd"></image> -->
 		</header-bar>
-		<view class="item" @tap.native.stop="toLogin">
+		<view class="item" @tap.stop="toLogin">
 			<view class="df aic">
 				<view class="headerImg">
 				</view>
 				<view class="df mgl10 ffcn fontS13">
-					<text>{{userInfo.realname?userInfo.realname:'登录/注册'}}</text>
+					<text >{{userInfo.realname?userInfo.realname:'登录/注册'}}</text>
 					<text class=" color999 mgt5" @tap.stop='toSetInfo'>编辑个人信息</text>
 				</view>
 			</view>
@@ -42,14 +42,15 @@
 
 <script>
 	import {
-		mapGetters
+		mapGetters,
+		mapActions
 	} from 'vuex'
 	import headerBar from '@/components/custom-nav/custom-nav.vue'
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		data() {
 			return {
-
+				// userInfo:{}
 			}
 		},
 		components: {
@@ -59,7 +60,19 @@
 		computed: {
 			...mapGetters(['userInfo']),
 		},
+		async onShow() {
+			if(Object.keys(this.userInfo).length){
+				let info = await this.$api.user.getUserInfo()
+				console.log(info)
+				if(info.data.id){
+					this.userInfo  = info.data
+					this.setUserInfo(info.data)
+				}
+			}
+			
+		},
 		methods: {
+			...mapActions(['setUserInfo']),
 			toLogin() {
 				if (this.userInfo.realname) return
 				this.$yrouter.push({
