@@ -35,7 +35,11 @@
 				<text>主页</text>
 				<image src="../../static/img/more.png" mode="widthFix" class="width20 "></image>
 			</view>
-
+		</view>
+		<view class="pdb30">
+			<borderlines :list="list" :collectChecked = "collectChecked" :typeChecked="typeChecked"></borderlines>
+			<!-- <view class="height30 bgC6cc051"></view> -->
+			
 		</view>
 	</view>
 </template>
@@ -47,15 +51,41 @@
 	} from 'vuex'
 	import headerBar from '@/components/custom-nav/custom-nav.vue'
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import borderlines from '@/components/borderLines.vue'
 	export default {
 		data() {
 			return {
+				collectChecked: true,
+				typeChecked:true,
+				list: [
+					{
+						listItem:[
+							{
+								title:'签到',
+								icon:'right',
+								url:'/pages/me/sign'
+							},
+							{
+								title:'账号设置',
+								icon:'right',
+								url:''
+							},
+							{
+								title:'隐私设置',
+								icon:'right',
+								url:''
+							},
+							
+						]
+					}
+				]
 				// userInfo:{}
 			}
 		},
 		components: {
 			headerBar,
-			uniIcons
+			uniIcons,
+			borderlines
 		},
 		computed: {
 			...mapGetters(['userInfo']),
@@ -65,7 +95,7 @@
 				let info = await this.$api.user.getUserInfo()
 				console.log(info)
 				if(info.data.id){
-					this.userInfo  = info.data
+					// this.userInfo  = info.data
 					this.setUserInfo(info.data)
 				}
 			}

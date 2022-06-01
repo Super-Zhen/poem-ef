@@ -62,6 +62,13 @@ function updataUserInfo(data = {}) {
 	})
 }
 
+// 用户签到
+function userSign(data = {}) {
+	return http.request({
+		url:'/poem/user/usersign',
+		data
+	})
+}
 // 上传头像
 
 const user = {
@@ -71,7 +78,8 @@ const user = {
 	userIsExist,
 	register,
 	getUserInfo,
-	updataUserInfo
+	updataUserInfo,
+	userSign
 }
 
 export default user

@@ -1,6 +1,7 @@
 let isRefreshing = true;
 let subscribers = [];
 import dialog from './dialog.js'
+import cookie from './cookie.js'
 
 function onAccessTokenFetched() {
 	subscribers.forEach((callback) => {
@@ -75,10 +76,11 @@ export class Http {
 						resolve(res.data)
 					}else if (statusCode == 10004) {
 						reject(res.data)
-					}else if(statusCode == 30001 || statusCode == 30002){
+					}else if(statusCode == 530 || statusCode == 30002){
 						// 提示用户登录信息不全，需要获取用户信息
+						cookie.clearAll()
 						uni.navigateTo({
-							url:"/pages/login/login"
+							url:"/pages/me/login"
 						})
 					}else if(statusCode===60001){ // 验证时效问题
 					debugger

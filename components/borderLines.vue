@@ -5,7 +5,7 @@
 			<view :key="indexs" class="items">
 				<view class="title" v-if='items.title'>{{items.title}}</view>
 				<template v-for="(item,index) in items.listItem">
-					<view class="df aic jcsb item borderB bgCfff" :key="index">
+					<view class="df aic jcsb item borderB bgCfff" :key="index" @tap.stop='toPage(item)'>
 						<text class="fontS14">{{item.title}}</text>
 						<view class="df aic" v-if="item.icon" @tap='toPage(item)'>
 							<text v-if="item.label" class="fontS14">{{item.label}}</text>
@@ -52,7 +52,11 @@
 		},
 		methods: {
 			toPage(url) {
-				console.log(url)
+				debugger
+				this.$yrouter.push({
+					path:url.url
+				})
+				// console.log(url)
 			},
 			changeCollect(e) {
 				this.collectChecked = e.detail.value
