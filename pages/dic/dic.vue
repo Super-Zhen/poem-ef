@@ -1,7 +1,11 @@
 <template>
 	<view>
-		<header-bar titleTintColor="#000" :bgColor="{'background': '#fff'}" fixed>
+		<view :style="{height:height+'px'}">
+			<!-- 这里是状态栏 -->
+		</view>
+		<header-bar titleTintColor="#000" :bgColor="{'background': '#000'}" >
 			<view slot="headerL" style="width:100%;">
+				
 				<view class="navbox">
 					<view class="width30">
 						<view class="icon iconfont icon-tengxunweibo1" style="font-size: 30px;" @tap="changetype"
@@ -131,6 +135,11 @@
 					page: 1,
 					perPage: 5
 				}
+			}
+		},
+		computed:{
+			height(){
+				return this.statusBarHeight
 			}
 		},
 		methods: {
@@ -287,6 +296,9 @@
 	}
 </script>
 <style scoped lang="less">
+	.statusBar{
+		height:var(--status-bar-height);
+	}
 	.navbox {
 		padding: 0 10rpx;
 		display: flex;

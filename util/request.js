@@ -25,7 +25,8 @@ export class Http {
 		callback = ''
 	} = {}) {
 		let baseUrl = ''
-	//#ifdef APP-PLUS
+		// baseUrl = "http://150.158.34.153" //后台请求接口的公共部分
+	//#ifdef APP-PLUS || MP-WEIXIN
 		baseUrl = "http://150.158.34.153" //后台请求接口的公共部分
 	//#endif
 		let _this = this;

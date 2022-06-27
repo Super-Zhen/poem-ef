@@ -19,7 +19,5 @@
     "url": "https://github.com/Super-Zhen/poem-ef/issues"
   },
   "homepage": "https://github.com/Super-Zhen/poem-ef#readme",
-  "dependencies": {
-    "marked": "^4.0.12"
-  }
+  "dependencies": {}
 }

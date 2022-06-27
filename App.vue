@@ -1,4 +1,5 @@
 <script>
+	import Vue from 'vue'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
@@ -8,7 +9,42 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
-		}
+		},
+		mounted() {
+			this.setAppInfo()
+		},
+		methods: {
+			async setAppInfo() {
+				let that = this;
+				return new Promise((resolve, reject) => {
+					uni.getSystemInfo({
+						success: function(e) {
+							// Vue.prototype.StatusBar = e.statusBarHeight;
+							// // #ifdef H5
+							// Vue.prototype.CustomBar = e.statusBarHeight + 45;
+							// // #endif
+
+							// // #ifdef APP-PLUS
+							// if (e.platform == "android") {
+							//   Vue.prototype.CustomBar = e.statusBarHeight + 50;
+							// } else {
+							//   Vue.prototype.CustomBar = e.statusBarHeight + 45;
+							// }
+							// // #endif	
+							// #ifdef MP-WEIXIN
+							console.log(e)
+							Vue.prototype.statusBarHeight = e.statusBarHeight
+							let custom = wx.getMenuButtonBoundingClientRect();
+							console.log(custom)
+							// Vue.prototype.Custom = custom;
+							// Vue.prototype.CustomBar = custom.bottom + custom.top - e
+							// 	.statusBarHeight;
+							// #endif
+						},
+					});
+				});
+			}
+		},
 	}
 </script>
 
@@ -20,7 +56,7 @@
 	// page{
 	// 	background-color: #eceef3;
 	// }
-	
+
 	/* .uni-page-head-btn{
 		margin:0 16px;
 	} */

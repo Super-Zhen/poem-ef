@@ -34,7 +34,36 @@
             "path" : "pages/dic/dic",
             "style" : {
 				"navigationBarTitleText": "",
-				"navigationStyle":"custom",
+				// "navigationStyle":"custom",
+				
+				"h5": {
+					"navigationStyle":"custom"
+				},
+				"mp-weixin": {
+					"navigationStyle":"custom",
+					"titleNView": {
+						"buttons": [ //原生标题栏按钮配置,
+							{
+								"type":"menu",
+								"fontSize":"23px"
+							},{
+								 "type":"share",
+								 "fontSize":"23px"
+							},{
+								"type": "favorite",
+								"fontSize":"24px"
+							},
+							{
+								"text": "全部" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"fontSize":"14px",
+								"float":"left"
+							}
+						],
+						"backButton": { //自定义 backButton
+							"background": "#00FF00"
+						}
+					}
+				},
 				"app-plus":{
 					"bounce": "none"
 				},
@@ -146,15 +175,7 @@
             }
             
         }
-        ,{
-            "path" : "pages/home/home",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
+        
         ,{
             "path" : "pages/dic/collection",
             "style" :                                                                                    

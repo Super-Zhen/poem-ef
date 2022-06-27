@@ -66,22 +66,23 @@
 				this.info.date = getDate(new Date(), -30).fullDate
 				this.info.startDate = getDate(new Date(), -60).fullDate
 				this.info.endDate = getDate(new Date(), 30).fullDate
-				this.info.selected = [{
-						date: getDate(new Date(), -3).fullDate,
-						info: '打卡'
-					},
-					{
-						date: getDate(new Date(), -2).fullDate,
-						info: '签到',
-						data: {
-							custom: '自定义信息',
-							name: '自定义消息头'
-						}
-					},
-					{
-						date: getDate(new Date(), -1).fullDate,
-						info: '已打卡'
-					}
+				this.info.selected = [
+					// {
+					// 	date: getDate(new Date(), -3).fullDate,
+					// 	info: '打卡'
+					// },
+					// {
+					// 	date: getDate(new Date(), -2).fullDate,
+					// 	info: '签到',
+					// 	data: {
+					// 		custom: '自定义信息',
+					// 		name: '自定义消息头'
+					// 	}
+					// },
+					// {
+					// 	date: getDate(new Date(), -1).fullDate,
+					// 	info: '已打卡'
+					// }
 				]
 			}, 2000)
 		},

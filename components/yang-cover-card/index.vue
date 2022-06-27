@@ -94,7 +94,21 @@
 	};
 </script>
 <style>
+	/* #ifdef MP-WEIXIN */
 	
-	@import url('~@/static/font/kaiti.css');
 	@import './index.response.css';
+	.quote{
+		font-family: "KaiTi";
+	}
+	
+	/* #endif */
+	
+	/* #ifdef APP */
+	.ccccc{
+		background-color: #fff;
+	}
+	@import url('~@/static/font/kaiti.css');
+	/* #endif */
+	
+	
 </style>
