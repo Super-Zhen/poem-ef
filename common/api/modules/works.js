@@ -35,7 +35,7 @@ function getAllCollections(data) {
  */
 function getHotAuthorsIncludeCountByLikers(data) {
 	return http.request({
-		url: 'call/getHotAuthorsIncludeCountByLikers',
+		url: '/call/getHotAuthorsIncludeCountByLikers',
 		data
 	})
 }
@@ -46,7 +46,7 @@ function getHotAuthorsIncludeCountByLikers(data) {
  */
 function getAuthorById2(data) {
 	return http.request({
-		url: 'call/getAuthorById2',
+		url: '/call/getAuthorById2',
 		data
 	})
 }

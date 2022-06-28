@@ -697,6 +697,7 @@ export const login = () => {
 				provider: provider,
 				success: function (loginRes) {
 					// 微信登录
+					debugger
 					console.log('登录接口调用成功')
 					console.log('开始检查用户信息授权')
 					let code = loginRes.code;
@@ -710,31 +711,32 @@ export const login = () => {
 							success: function (user) {
 								console.log('获取用户信息成功')
 								console.log('开始调用登录接口')
-								wxappAuth({
-									encryptedData: user.encryptedData,
-									iv: user.iv,
-									code: code,
-									spread: cookie.get("spread")
-								}).then(({ data }) => {
-									console.log('登录接口调用成功')
-									console.log('开始处理登录信息保存，并获取用户详情')
-									uni.hideLoading();
-									store.commit("login", data.token, dayjs(data.expires_time));
-									store.dispatch('userInfo', true)
-									getUserInfo().then(user => {
-										console.log('获取用户信息成功')
-										uni.setStorageSync('uid', user.data.uid);
-										store.dispatch('setUserInfo', user.data)
-										resolve(user)
-									}).catch(error => {
-										console.log('获取用户信息失败')
-										reject('获取用户信息失败')
-									});
-								}).catch(error => {
-									console.log(error)
-									console.log('登录接口调用失败')
-									reject('登录接口调用失败')
-								});
+								console.log("user",user)
+								// wxappAuth({
+								// 	encryptedData: user.encryptedData,
+								// 	iv: user.iv,
+								// 	code: code,
+								// 	spread: cookie.get("spread")
+								// }).then(({ data }) => {
+								// 	console.log('登录接口调用成功')
+								// 	console.log('开始处理登录信息保存，并获取用户详情')
+								// 	uni.hideLoading();
+								// 	store.commit("login", data.token, dayjs(data.expires_time));
+								// 	store.dispatch('userInfo', true)
+								// 	getUserInfo().then(user => {
+								// 		console.log('获取用户信息成功')
+								// 		uni.setStorageSync('uid', user.data.uid);
+								// 		store.dispatch('setUserInfo', user.data)
+								// 		resolve(user)
+								// 	}).catch(error => {
+								// 		console.log('获取用户信息失败')
+								// 		reject('获取用户信息失败')
+								// 	});
+								// }).catch(error => {
+								// 	console.log(error)
+								// 	console.log('登录接口调用失败')
+								// 	reject('登录接口调用失败')
+								// });
 							},
 							fail() {
 								console.log('获取用户信息失败')

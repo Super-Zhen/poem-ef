@@ -1,9 +1,9 @@
 <template>
 	<view>
-		<view :style="{height:height+'px'}">
+		<!-- <view :style="{height:height+'px'}"> -->
 			<!-- 这里是状态栏 -->
-		</view>
-		<header-bar titleTintColor="#000" :bgColor="{'background': '#000'}" >
+		<!-- </view> -->
+		<header-bar titleTintColor="#000" :bgColor="{'background': '#fff'}" >
 			<view slot="headerL" style="width:100%;">
 				
 				<view class="navbox">
@@ -27,7 +27,7 @@
 			<!-- <text slot="iconfont" class="uni_btnIco iconfont icon-choose03" @tap="aaa"></text> -->
 			<!-- <image slot="image" style="width: 30rpx;" class="uni_btnImage" src="../../static/img/dic.png" mode="widthFix" @tap="ddd"></image> -->
 		</header-bar>
-		<view v-show="currentIndex==='1'">
+		<view v-if="currentIndex==='1'">
 			<category v-if="type === '1'" :categoryList="categoryList" :subCategoryList="subCategoryList"
 				@categoryMainClick="categoryMainClick" @categorySubClick="categorySubClick"></category>
 			<view class="11" v-else-if="type==='2'">
@@ -36,7 +36,12 @@
 						<text>{{items.name}}</text>
 						<view class="titleMore" v-show="items.subCategoryList.length>11">
 							<text>更多</text>
+							<!-- #ifndef H5 -->
+							<image src="/static/img/more.png" mode="widthFix" style="width: 26rpx;"></image>
+							<!-- #endif -->
+							<!-- #ifdef H5 -->
 							<image src="~/static/img/more.png" mode="widthFix" style="width: 26rpx;"></image>
+							<!-- #endif -->
 						</view>
 					</view>
 					<view class="df ffrw">
@@ -56,7 +61,12 @@
 						<text>{{items.name}}</text>
 						<view class="titleMore" v-show="items.subCategoryList.length>11">
 							<text>更多</text>
+							<!-- #ifndef H5 -->
+							<image src="/static/img/more.png" mode="widthFix" style="width: 26rpx;"></image>
+							<!-- #endif -->
+							<!-- #ifdef H5 -->
 							<image src="~/static/img/more.png" mode="widthFix" style="width: 26rpx;"></image>
+							<!-- #endif -->
 						</view>
 					</view>
 					<view class="df ffrw">
@@ -73,7 +83,7 @@
 				</view>
 			</view>
 		</view>
-		<view v-show="currentIndex === '2' && authorsList.length">
+		<view v-if="currentIndex === '2' && authorsList.length">
 			<view class="border fontS14 mg15 pd20 borderR10" v-for="(item, index) in authorsList" :key="item.objectId">
 				<view class="fontS16 mgb15">
 					<text @tap='toAuthorDetail(item.objectId,item.name)'>
@@ -94,7 +104,7 @@
 				</view>
 			</view>
 		</view>
-		<view v-show="currentIndex=='3'">
+		<view v-if="currentIndex=='3'">
 			<view v-for="(item,index) in allworks" :key="index">
 				<view class="mg15 border borderR10 pd10">
 					<view class="fontS18 colorf6495ed fontW pdl10">
@@ -333,6 +343,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 30rpx 16rpx;
+		height: 60rpx;
 	}
 
 	.titleMore {
@@ -364,7 +375,7 @@
 			padding: 4rpx;
 			overflow: hidden;
 			border-radius: 50%;
-
+			margin-bottom: 24rpx;
 			image {
 
 				border-radius: 50%;

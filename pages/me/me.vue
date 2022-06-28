@@ -1,9 +1,6 @@
 <template>
 	<view class="me">
-		<header-bar titleTintColor="#000" :bgColor="{'background': 'rgb(248,248,248)'}" fixed>
-			<!-- <view slot='center'>
-				<text>我</text>
-			</view> -->
+		<!-- <header-bar titleTintColor="#000" :bgColor="{'background': 'rgb(248,248,248)'}" fixed>
 			<view slot="headerL" style="width:100%;">
 				<view class="navbox">
 					<view class="width30">
@@ -12,16 +9,10 @@
 					<view class="navborder">
 						<text>我</text>
 					</view>
-					<!-- <view class="width30"> -->
 					<uni-icons type="gear" color="#5e6d82" size="28" @tap='toSet' />
-					<!-- </view> -->
 				</view>
 			</view>
-			<!-- <text slot="back" class="icon iconfont icon-icon-class-c"></text>
-		  <text slot="iconfont" class="icon iconfont icon-tengxunweibo1"></text> -->
-			<!-- <text slot="iconfont" class="uni_btnIco iconfont icon-choose03" @tap="aaa"></text> -->
-			<!-- <image slot="image" style="width: 60rpx;" class="uni_btnImage" src="../../static/img/dic.png" mode="widthFix" @tap="ddd"></image> -->
-		</header-bar>
+		</header-bar> -->
 		<view class="item" @tap.stop="toLogin">
 			<view class="df aic">
 				<view class="headerImg">
@@ -52,6 +43,8 @@
 	import headerBar from '@/components/custom-nav/custom-nav.vue'
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	import borderlines from '@/components/borderLines.vue'
+	
+	import { login } from '@/util/index.js'
 	export default {
 		data() {
 			return {
@@ -105,9 +98,16 @@
 			...mapActions(['setUserInfo']),
 			toLogin() {
 				if (this.userInfo.realname) return
+				// #ifdef H5
 				this.$yrouter.push({
 					path: "/pages/me/login"
 				})
+				// #endif
+				// #ifdef MP-WEIXIN
+				login().then(res=>{
+					console.log(res)
+				})
+				// #endif
 			},
 			toSetInfo() {
 				this.$yrouter.push({
