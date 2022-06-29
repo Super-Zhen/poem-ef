@@ -13,6 +13,9 @@
 				</view>
 			</view>
 		</header-bar> -->
+		<!-- #ifdef MP-WEIXIN -->
+		<login-box id="authorization" :isShow="isShowLogin"></login-box>
+		<!-- #endif -->
 		<view class="item" @tap.stop="toLogin">
 			<view class="df aic">
 				<view class="headerImg">
@@ -43,6 +46,7 @@
 	import headerBar from '@/components/custom-nav/custom-nav.vue'
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	import borderlines from '@/components/borderLines.vue'
+	import loginBox from '@/components/loginbox/loginbox.vue'
 	
 	import { login } from '@/util/index.js'
 	export default {
@@ -50,6 +54,7 @@
 			return {
 				collectChecked: true,
 				typeChecked:true,
+				isShowLogin:false, //登录弹窗是否展示
 				list: [
 					{
 						listItem:[
@@ -78,7 +83,8 @@
 		components: {
 			headerBar,
 			uniIcons,
-			borderlines
+			borderlines,
+			loginBox
 		},
 		computed: {
 			...mapGetters(['userInfo']),
@@ -104,9 +110,11 @@
 				})
 				// #endif
 				// #ifdef MP-WEIXIN
-				login().then(res=>{
-					console.log(res)
-				})
+				if (uni.getStorageSync("userInfo")) {
+					this.isShowLogin = false
+				} else {
+					this.isShowLogin = true
+				}
 				// #endif
 			},
 			toSetInfo() {

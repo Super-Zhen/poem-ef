@@ -1,0 +1,63 @@
+/* components/login/login.wxss */
+.loginView{
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.44);
+}
+.login{
+    box-sizing: border-box;
+    position: relative;
+    width: 550rpx;
+    height: 400rpx;
+    padding: 68rpx 43rpx 0;
+    background-color: #fff;
+    border-radius: 20rpx;
+}
+.title{
+    display: block;
+    width: 100%;
+    height: 48rpx;
+    margin-bottom: 53rpx;
+    font-size: 34rpx;
+    color: #1E1E1E;
+    line-height: 48rpx;
+    text-align: center;
+    font-weight: bold;
+}
+.btn{
+    display: block;
+    width: 100%;
+    height: 85rpx;
+    margin-bottom: 20rpx;
+    padding: 0;
+    background-color: #6FAB3D;
+    border-radius: 8rpx;
+    font-size: 32rpx;
+    color: #FFFFFF;
+    line-height: 85rpx;
+    text-align: center;
+    font-weight: normal;
+}
+.tips{
+    display: block;
+    width: 100%;
+    font-size: 22rpx;
+    color: #5B5B5B;
+    line-height: 30rpx;
+    text-align: center;
+}
+.close{
+    position: absolute;
+    bottom: -90rpx;
+    left: 0;
+    right: 0;
+    width: 62rpx;
+    height: 62rpx;
+    margin: 0 auto;
+}
