@@ -70,16 +70,16 @@
 				// 	}
 				// })
 
-			// uni.getStorage({
-			// 	key: 'openid',
-			// 	success: async (res) => {
-			// 		console.log(res)
-			// 	},
-			// 	fail: async(res) =>{
-			// 		console.log(res)
-			// 		this.getOpenID()
-			// 	}
-			// })
+			uni.getStorage({
+				key: 'openid',
+				success: async (res) => {
+					console.log(res)
+				},
+				fail: async(res) =>{
+					console.log(res)
+					this.getOpenID()
+				}
+			})
 
 		},
 		methods: {
@@ -257,10 +257,12 @@
 					success: async (res) => {
 						console.log(res, "微信登录成功") //微信登录成功
 						let param = {
-							Code: res.code
+							code: res.code
 						}
 						try {
-							const resultData = await this.request('AppApi/GetSCWxOpenId', 'POST', param)
+							debugger
+							console.log(this.$api.weixin.login)
+							const resultData = await this.$api.weixin.login(param)
 							console.log(resultData)
 							// 存储session_key
 							uni.setStorage({

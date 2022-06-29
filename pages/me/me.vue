@@ -33,7 +33,7 @@
 		<view class="pdb30">
 			<borderlines :list="list" :collectChecked = "collectChecked" :typeChecked="typeChecked"></borderlines>
 			<!-- <view class="height30 bgC6cc051"></view> -->
-			
+
 		</view>
 	</view>
 </template>
@@ -47,7 +47,7 @@
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	import borderlines from '@/components/borderLines.vue'
 	import loginBox from '@/components/loginbox/loginbox.vue'
-	
+
 	import { login } from '@/util/index.js'
 	export default {
 		data() {
@@ -73,7 +73,7 @@
 								icon:'right',
 								url:''
 							},
-							
+
 						]
 					}
 				]
@@ -98,7 +98,7 @@
 					this.setUserInfo(info.data)
 				}
 			}
-			
+
 		},
 		methods: {
 			...mapActions(['setUserInfo']),

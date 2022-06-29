@@ -27,7 +27,14 @@ export class Http {
 		let baseUrl = ''
 		// baseUrl = "http://150.158.34.153" //后台请求接口的公共部分
 	//#ifdef APP-PLUS || MP-WEIXIN
+	debugger
+	console.log(url.indexOf('weixin'))
+	if(url.indexOf('weixin')>-1){
+		baseUrl = "http://localhost:3000" //后台请求接口的公共部分
+	}else{
 		baseUrl = "http://150.158.34.153" //后台请求接口的公共部分
+	}
+		
 	//#endif
 		let _this = this;
 		return new Promise((resolve, reject) => {
