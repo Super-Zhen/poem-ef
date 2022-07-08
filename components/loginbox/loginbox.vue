@@ -29,7 +29,10 @@
 
 	// import app from '../../App.vue'
 	// console.log(app)
-
+	import {
+		getProvider,
+		authorize
+	} from '@/util/index.js'
 	export default {
 		data() {
 			return {
@@ -59,23 +62,23 @@
 				console.log('日')
 			}
 
-				// uni.getStorage({
-				// 	key: 'location',
-				// 	success: async (res) => {
-				// 		console.log(res)
-				// 	},
-				// 	fail: async(res) =>{
-				// 		console.log(res)
-				// 		this.location()
-				// 	}
-				// })
+			// uni.getStorage({
+			// 	key: 'location',
+			// 	success: async (res) => {
+			// 		console.log(res)
+			// 	},
+			// 	fail: async(res) =>{
+			// 		console.log(res)
+			// 		this.location()
+			// 	}
+			// })
 
 			uni.getStorage({
 				key: 'openid',
 				success: async (res) => {
 					console.log(res)
 				},
-				fail: async(res) =>{
+				fail: async (res) => {
 					console.log(res)
 					this.getOpenID()
 				}
@@ -84,13 +87,13 @@
 		},
 		methods: {
 			//获取设置
-			getSetting(){
+			getSetting() {
 				let that = this
 				wx.getSetting({
-				    success:function(res){
-				  //     if (!res.authSetting['scope.userLocation']) {
-				  //       console.log("-------------不满足scope.userLocation权限----------");
-				  //       //申请授权
+					success: function(res) {
+						//     if (!res.authSetting['scope.userLocation']) {
+						//       console.log("-------------不满足scope.userLocation权限----------");
+						//       //申请授权
 						// uni.showModal({
 						// 	title: "提示",
 						// 	content: '请允许位置授权,再进行登录',
@@ -121,19 +124,19 @@
 						// 		}
 						// 	}
 						// })
-				  //       // wx.authorize({
-				  //       //   scope: 'scope.userLocation',
-				  //       //   success() {
+						//       // wx.authorize({
+						//       //   scope: 'scope.userLocation',
+						//       //   success() {
 
-				  //       //   }
-				  //       // })
-				  //     }else{
-						  console.log("res.authSetting['scope.userLocation']")
-						  // that.location()
-							that.profileLogin()
-					  // }
-				    }
-				  })
+						//       //   }
+						//       // })
+						//     }else{
+						console.log("res.authSetting['scope.userLocation']")
+						// that.location()
+						that.profileLogin()
+						// }
+					}
+				})
 			},
 			// 使用新接口
 			profileLogin() {
@@ -164,7 +167,7 @@
 										console.log(res)
 										this.entry(res)
 									},
-									fail: async(res) =>{
+									fail: async (res) => {
 										console.log(res)
 									}
 								})
@@ -219,7 +222,7 @@
 				})
 				uni.getLocation({
 					success: res => {
-						console.log('getLocation',res)
+						console.log('getLocation', res)
 						var location = {
 							latitude: res.latitude,
 							longitude: res.longitude
@@ -242,7 +245,7 @@
 						uni.showToast({
 							title: '请允许位置授权,再进行登录',
 							icon: 'none',
-							duration:3000
+							duration: 3000
 						})
 						return
 					}
@@ -252,43 +255,161 @@
 			// 获取openID
 			async getOpenID() {
 				console.log('请求微信登录')
-
-				uni.login({
-					success: async (res) => {
-						console.log(res, "微信登录成功") //微信登录成功
-						let param = {
-							code: res.code
+				return new Promise((resolve, reject) => {
+					// if (Vue.prototype.$deviceType == 'weixin') {
+					// 	// 微信授权登录
+					// 	const {
+					// 		code
+					// 	} = parseQuery()
+					// 	if (code) {
+					// 		auth(code)
+					// 			.then(() => {
+					// 				let redirect = cookie.get('redirect').replace(/\ /g, '')
+					// 				console.log(redirect)
+					// 				if (redirect) {
+					// 					redirect = redirect.split('/pages')[1]
+					// 					reLaunch({
+					// 						path: '/pages' + redirect,
+					// 					});
+					// 					cookie.remove('redirect');
+					// 				} else {
+					// 					reLaunch({
+					// 						path: '/pages/home/index',
+					// 					});
+					// 				}
+					// 			})
+					// 			.catch(() => {
+					// 				reject('当前运行环境为微信浏览器')
+					// 				reLaunch({
+					// 					path: '/pages/home/index',
+					// 				});
+					// 			});
+					// 	} else {}
+					// 	return
+					// }
+					// if (Vue.prototype.$deviceType == 'weixinh5') {
+					// 	console.log('当前运行环境为H5')
+					// 	reject('当前运行环境为H5')
+					// 	return
+					// }
+					// if (Vue.prototype.$deviceType == 'app') {
+					// 	console.log('当前运行环境为app')
+					// 	reject('当前运行环境为app')
+					// 	return
+					// }
+					console.log('————————————————————')
+					console.log('开始登录')
+					console.log('————————————————————')
+					console.log('获取环境商')
+					getProvider().then(provider => {
+						console.log('当前的环境商')
+						console.log(provider)
+						if (!provider) {
+							reject()
 						}
-						try {
-							debugger
-							console.log(this.$api.weixin.login)
-							const resultData = await this.$api.weixin.login(param)
-							console.log(resultData)
-							// 存储session_key
-							uni.setStorage({
-								data: resultData.data.session_key,
-								key: 'session_key',
-								success: res => {
-								console.log("session_key存储成功")
-								}
-							})
-							uni.setStorage({
-								data: resultData.data,
-								key: 'openid',
-								success: res => {
-									console.log("openid存储成功")
-								}
-							})
-							// 调用信息录用接口
-						} catch (err) {
-							console.log('获取OpenID失败', err)
-							uni.hideLoading()
-						}
-					},
-					fail: err => {
-						console.log('微信登录失败', err)
-					}
+						// 调用登录接口
+						console.log('调用登录接口')
+						uni.login({
+							provider: provider,
+							success: function(loginRes) {
+								// 微信登录
+								debugger
+								console.log('登录接口调用成功')
+								console.log('开始检查用户信息授权')
+								let code = loginRes.code;
+								// 检查授权， 检查用户信息授权
+								authorize('userInfo').then(() => {
+									console.log('授权通过')
+									console.log('开始获取用户信息')
+									uni.getUserInfo({
+										provider: provider,
+										success: function(user) {
+											console.log('获取用户信息成功')
+											console.log('开始调用登录接口')
+											console.log("user", user)
+											// weixin.login({code:loginRes.code})
+											// wxappAuth({
+											// 	encryptedData: user.encryptedData,
+											// 	iv: user.iv,
+											// 	code: code,
+											// 	spread: cookie.get("spread")
+											// }).then(({ data }) => {
+											// 	console.log('登录接口调用成功')
+											// 	console.log('开始处理登录信息保存，并获取用户详情')
+											// 	uni.hideLoading();
+											// 	store.commit("login", data.token, dayjs(data.expires_time));
+											// 	store.dispatch('userInfo', true)
+											// 	getUserInfo().then(user => {
+											// 		console.log('获取用户信息成功')
+											// 		uni.setStorageSync('uid', user.data.uid);
+											// 		store.dispatch('setUserInfo', user.data)
+											// 		resolve(user)
+											// 	}).catch(error => {
+											// 		console.log('获取用户信息失败')
+											// 		reject('获取用户信息失败')
+											// 	});
+											// }).catch(error => {
+											// 	console.log(error)
+											// 	console.log('登录接口调用失败')
+											// 	reject('登录接口调用失败')
+											// });
+										},
+										fail() {
+											console.log('获取用户信息失败')
+											reject('获取用户信息失败')
+										}
+									});
+								}).catch(error => {
+									console.log('用户未授权')
+									reject('用户未授权')
+								})
+							},
+							fail() {
+								console.log('调用登录接口失败')
+								reject('调用登录接口失败')
+							}
+						});
+					}).catch(error => {
+						reject('获取环境服务商失败')
+					})
 				})
+				// login().then(res=>{
+				// 	console.log(res)
+				// })
+				// uni.login({
+				// 	success: async (res) => {
+				// 		console.log(res, "微信登录成功") //微信登录成功
+				// 		let param = {
+				// 			Code: res.code
+				// 		}
+				// 		try {
+				// 			const resultData = await this.request('AppApi/GetSCWxOpenId', 'POST', param)
+				// 			console.log(resultData)
+				// 			// 存储session_key
+				// 			uni.setStorage({
+				// 				data: resultData.data.session_key,
+				// 				key: 'session_key',
+				// 				success: res => {
+				// 				console.log("session_key存储成功")
+				// 				}
+				// 			})
+				// 			uni.setStorage({
+				// 				data: resultData.data,
+				// 				key: 'openid',
+				// 				success: res => {
+				// 					console.log("openid存储成功")
+				// 				}
+				// 			})
+				// 			// 调用信息录用接口
+				// 		} catch (err) {
+				// 			console.log('获取OpenID失败', err)
+				// 			uni.hideLoading()
+				// 		}
+				// 	},
+				// 	fail: err => {
+				// 		console.log('微信登录失败', err)
+				// 	}
+				// })
 
 				// openID().then(openidRes => {
 				// 	console.log(openidRes.data)
@@ -457,7 +578,8 @@
 									// 发起个人中心接口
 									console.log(parameter, '???');
 									try {
-										const resultData = await this.request('/AppApi/GetUserCenter', 'POST', parameter)
+										const resultData = await this.request(
+											'/AppApi/GetUserCenter', 'POST', parameter)
 										console.log(resultData);
 										uni.setStorage({
 											data: resultData,
@@ -475,19 +597,26 @@
 											}
 										});
 
-										if(resultData.data.cardUser.Status===1){
+										if (resultData.data.cardUser.Status === 1) {
 
 											uni.getStorage({
 												key: 'doctor',
 												success: async (doctor) => {
-													if(doctor.data&&doctor.data.doctorId&&doctor.data.doctorPhone){
+													if (doctor.data && doctor.data
+														.doctorId && doctor.data
+														.doctorPhone) {
 														console.log('更新医生信息')
 														var parameter = {
-															DoctorId:doctor.data.doctorId,
-															DoctorPhone:doctor.data.doctorPhone,
-															UserId: resultData.data.cardUser.UserId,
+															DoctorId: doctor.data
+																.doctorId,
+															DoctorPhone: doctor
+																.data.doctorPhone,
+															UserId: resultData.data
+																.cardUser.UserId,
 														};
-														await this.request('AppApi/SetUserCardInFo','POST',parameter)
+														await this.request(
+															'AppApi/SetUserCardInFo',
+															'POST', parameter)
 													}
 												}
 											})
@@ -499,19 +628,26 @@
 
 										if (getCurrentPages().length != 0) {
 											//刷新当前页面的数据
-											getCurrentPages()[getCurrentPages().length - 1].onShow();
-											let currentPage = getCurrentPages()[getCurrentPages().length - 1]
-											
+											getCurrentPages()[getCurrentPages().length - 1]
+											.onShow();
+											let currentPage = getCurrentPages()[getCurrentPages()
+												.length - 1]
+
 											let keyList = Object.keys(currentPage.options)
-											
-											if(currentPage.route.indexOf('/goods/goods')>-1){ // todo增加判断这可以后期优化
-												if(keyList.length > 0){
-												    let keys = '?'
-												    keyList.forEach((item, index) =>{ 
-														index === 0 ?  keys = keys + item + '=' + currentPage.options[item] : keys = keys + '&' + item + '=' + currentPage.options[item] 
+
+											if (currentPage.route.indexOf('/goods/goods') > -
+												1) { // todo增加判断这可以后期优化
+												if (keyList.length > 0) {
+													let keys = '?'
+													keyList.forEach((item, index) => {
+														index === 0 ? keys = keys + item +
+															'=' + currentPage.options[
+															item] : keys = keys + '&' +
+															item + '=' + currentPage
+															.options[item]
 													})
 													uni.reLaunch({
-														url:'/'+ currentPage.route + keys
+														url: '/' + currentPage.route + keys
 													})
 												}
 											}

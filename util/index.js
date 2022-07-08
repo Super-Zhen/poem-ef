@@ -3,6 +3,7 @@ import stringify from "@/util/querystring";
 import cookie from '@/util/cookie'
 import {switchTab, push, replace, go, back, reLaunch} from './router.js'
 
+// import {weixin} from '@/common/api/modules/weixin.js'
 export function setTitle(title){
 	uni.setNavigationBarTitle({
 		title
@@ -712,6 +713,7 @@ export const login = () => {
 								console.log('获取用户信息成功')
 								console.log('开始调用登录接口')
 								console.log("user",user)
+								// weixin.login({code:loginRes.code})
 								// wxappAuth({
 								// 	encryptedData: user.encryptedData,
 								// 	iv: user.iv,
